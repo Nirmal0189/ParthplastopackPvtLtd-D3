@@ -119,9 +119,10 @@
     transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) translateY(-8px);
   }
 
-  /* ---- Section Layout ---- */
   .section-container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply 2xl:max-w-[1536px] 2xl:px-12;
+    @apply min-[1920px]:max-w-[1800px] min-[2560px]:max-w-[2400px];
   }
 
   .section-padding {

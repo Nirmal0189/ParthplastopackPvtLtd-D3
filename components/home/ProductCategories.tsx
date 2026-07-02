@@ -36,7 +36,7 @@ export default function ProductCategories() {
           whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
           variants={staggerContainer}
-          className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6"
+          className="grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 min-[1920px]:grid-cols-5 gap-3 md:gap-6"
         >
           {categoryCards.map((category, i) => (
             <motion.div key={category.title} variants={staggerItem}>

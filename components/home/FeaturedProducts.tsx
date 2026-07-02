@@ -40,7 +40,7 @@ export default function FeaturedProducts() {
           whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
           variants={staggerContainer}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6"
+          className="grid grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5 min-[1920px]:grid-cols-6 gap-3 md:gap-6"
         >
           {featuredProducts.map((product) => (
             <motion.div key={product.id} variants={staggerItem}>

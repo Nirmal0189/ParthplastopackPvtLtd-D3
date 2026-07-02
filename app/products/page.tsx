@@ -67,7 +67,7 @@ export default function ProductsPage() {
                   initial="hidden"
                   animate="visible"
                   variants={staggerContainer}
-                  className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-3 gap-3 md:gap-5"
+                  className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 min-[1920px]:grid-cols-5 min-[2560px]:grid-cols-6 gap-3 md:gap-5"
                 >
                   {filteredProducts.map((product, i) => (
                     <ProductCard key={product.id} product={product} index={i} />
