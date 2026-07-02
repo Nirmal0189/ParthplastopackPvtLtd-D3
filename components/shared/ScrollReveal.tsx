@@ -15,28 +15,28 @@ interface ScrollRevealProps {
 
 const variants: Record<string, Variants> = {
   fadeUp: {
-    hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, y: 60, filter: 'blur(8px)' },
+    visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
   },
   fadeDown: {
-    hidden: { opacity: 0, y: -30 },
-    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, y: -40, filter: 'blur(8px)' },
+    visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
   },
   slideLeft: {
-    hidden: { opacity: 0, x: -60 },
-    visible: { opacity: 1, x: 0 },
+    hidden: { opacity: 0, x: -80, filter: 'blur(8px)' },
+    visible: { opacity: 1, x: 0, filter: 'blur(0px)' },
   },
   slideRight: {
-    hidden: { opacity: 0, x: 60 },
-    visible: { opacity: 1, x: 0 },
+    hidden: { opacity: 0, x: 80, filter: 'blur(8px)' },
+    visible: { opacity: 1, x: 0, filter: 'blur(0px)' },
   },
   scaleIn: {
-    hidden: { opacity: 0, scale: 0.85 },
-    visible: { opacity: 1, scale: 1 },
+    hidden: { opacity: 0, scale: 0.85, filter: 'blur(10px)' },
+    visible: { opacity: 1, scale: 1, filter: 'blur(0px)' },
   },
   zoomIn: {
-    hidden: { opacity: 0, scale: 0.5 },
-    visible: { opacity: 1, scale: 1 },
+    hidden: { opacity: 0, scale: 0.5, filter: 'blur(15px)' },
+    visible: { opacity: 1, scale: 1, filter: 'blur(0px)' },
   },
 };
 
@@ -44,7 +44,7 @@ export default function ScrollReveal({
   children,
   variant = 'fadeUp',
   delay = 0,
-  duration = 0.7,
+  duration = 0.9,
   className,
   once = true,
 }: ScrollRevealProps) {

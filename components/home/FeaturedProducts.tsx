@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+import SmoothImage from '@/components/shared/SmoothImage';
 import Link from 'next/link';
 import { ArrowRight, Heart, Eye } from 'lucide-react';
 import SectionHeading from '@/components/shared/SectionHeading';
@@ -52,7 +52,7 @@ export default function FeaturedProducts() {
                 {/* Image */}
                 <div className="relative h-40 md:h-60 bg-gradient-to-br from-gray-50 to-white flex items-center justify-center p-3 md:p-6 overflow-hidden">
                   <motion.div variants={imageZoom}>
-                    <Image
+                    <SmoothImage
                       src={product.image}
                       alt={product.name}
                       width={200}

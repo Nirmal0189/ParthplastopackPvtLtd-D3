@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+import SmoothImage from '@/components/shared/SmoothImage';
 import Link from 'next/link';
 import { ArrowRight, Play, ChevronDown } from 'lucide-react';
 import AnimatedCounter from '@/components/shared/AnimatedCounter';
@@ -43,11 +43,12 @@ export default function HeroSection() {
           animate={{ y: [-10, 15, -10] }}
           transition={{ duration: 5 + i * 1.5, repeat: Infinity, ease: 'easeInOut', delay: i * 0.8 }}
         >
-          <Image
+          <SmoothImage
             src={product.src}
             alt={product.alt}
             width={130}
             height={130}
+            priority
             className="object-contain drop-shadow-xl opacity-80"
           />
         </motion.div>

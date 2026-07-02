@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+import SmoothImage from '@/components/shared/SmoothImage';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import SectionHeading from '@/components/shared/SectionHeading';
@@ -49,7 +49,7 @@ export default function ProductCategories() {
                   {/* Image */}
                   <div className="relative h-52 md:h-56 overflow-hidden bg-gradient-to-br from-gray-50 to-white flex items-center justify-center p-6">
                     <motion.div variants={imageZoom}>
-                      <Image
+                      <SmoothImage
                         src={category.image}
                         alt={category.title}
                         width={200}

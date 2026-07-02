@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+import SmoothImage from '@/components/shared/SmoothImage';
 import Link from 'next/link';
 import { Heart, Eye, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -26,7 +26,7 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
         {/* Image Area */}
         <div className="relative h-40 md:h-56 bg-gradient-to-br from-gray-50 to-white flex items-center justify-center p-3 md:p-6 overflow-hidden">
           <motion.div variants={imageZoom}>
-            <Image
+            <SmoothImage
               src={product.image}
               alt={product.name}
               width={200}

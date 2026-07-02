@@ -135,7 +135,7 @@
            bg-primary text-white font-semibold rounded-xl
            shadow-md hover:shadow-glow-primary
            transition-all duration-300 ease-premium
-           hover:-translate-y-0.5 active:translate-y-0
+           hover:-translate-y-1 hover:scale-[1.02] active:scale-[0.98]
            relative overflow-hidden;
   }
 
@@ -154,7 +154,7 @@
            border-2 border-primary/20 hover:border-primary/40
            shadow-sm hover:shadow-lg
            transition-all duration-300 ease-premium
-           hover:-translate-y-0.5 active:translate-y-0;
+           hover:-translate-y-1 hover:scale-[1.02] active:scale-[0.98];
   }
 
   .btn-accent {
@@ -162,7 +162,7 @@
            bg-accent text-white font-semibold rounded-xl
            shadow-md hover:shadow-glow-accent
            transition-all duration-300 ease-premium
-           hover:-translate-y-0.5 active:translate-y-0;
+           hover:-translate-y-1 hover:scale-[1.02] active:scale-[0.98];
   }
 
   .btn-ghost {
