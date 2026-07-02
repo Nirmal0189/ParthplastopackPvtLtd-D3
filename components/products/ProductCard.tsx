@@ -24,7 +24,7 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
     >
       <div className="card-3d rounded-2xl overflow-hidden h-full flex flex-col">
         {/* Image Area */}
-        <div className="relative h-56 bg-gradient-to-br from-gray-50 to-white flex items-center justify-center p-6 overflow-hidden">
+        <div className="relative h-40 md:h-56 bg-gradient-to-br from-gray-50 to-white flex items-center justify-center p-3 md:p-6 overflow-hidden">
           <motion.div variants={imageZoom}>
             <Image
               src={product.image}
@@ -65,7 +65,7 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
         </div>
 
         {/* Content */}
-        <div className="p-5 flex flex-col flex-grow">
+        <div className="p-3 md:p-5 flex flex-col flex-grow">
           <h3 className="text-sm font-semibold text-dark group-hover:text-primary transition-colors line-clamp-2 mb-3">
             {product.name}
           </h3>
@@ -88,14 +88,15 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
           <div className="mt-4 flex gap-2">
             <Link
               href={`/products/${product.slug}`}
-              className="flex-1 btn-primary py-2.5 text-xs rounded-xl group/btn"
+              className="flex-1 btn-primary py-2 text-[10px] md:text-xs rounded-xl group/btn"
             >
-              View Details
+              <span className="hidden sm:inline">View Details</span>
+              <span className="sm:hidden">Details</span>
               <ArrowRight size={14} className="group-hover/btn:translate-x-0.5 transition-transform" />
             </Link>
             <Link
               href="/contact"
-              className="px-3 py-2.5 rounded-xl border border-gray-200 text-xs font-medium text-gray-600 hover:border-primary/30 hover:text-primary transition-all"
+              className="px-2 md:px-3 py-2 rounded-xl border border-gray-200 text-[10px] md:text-xs font-medium text-gray-600 hover:border-primary/30 hover:text-primary transition-all flex items-center justify-center"
             >
               Quote
             </Link>

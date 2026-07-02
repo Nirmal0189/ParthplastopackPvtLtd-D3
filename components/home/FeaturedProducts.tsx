@@ -40,7 +40,7 @@ export default function FeaturedProducts() {
           whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
           variants={staggerContainer}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6"
         >
           {featuredProducts.map((product) => (
             <motion.div key={product.id} variants={staggerItem}>
@@ -50,7 +50,7 @@ export default function FeaturedProducts() {
                 className="group card-3d rounded-2xl overflow-hidden h-full flex flex-col"
               >
                 {/* Image */}
-                <div className="relative h-56 md:h-60 bg-gradient-to-br from-gray-50 to-white flex items-center justify-center p-6 overflow-hidden">
+                <div className="relative h-40 md:h-60 bg-gradient-to-br from-gray-50 to-white flex items-center justify-center p-3 md:p-6 overflow-hidden">
                   <motion.div variants={imageZoom}>
                     <Image
                       src={product.image}
@@ -83,7 +83,7 @@ export default function FeaturedProducts() {
                 </div>
 
                 {/* Content */}
-                <div className="p-5 flex flex-col flex-grow">
+                <div className="p-3 md:p-5 flex flex-col flex-grow">
                   <span className="text-[10px] font-semibold text-primary/60 uppercase tracking-wider">
                     {product.categoryLabel}
                   </span>
@@ -109,13 +109,14 @@ export default function FeaturedProducts() {
                   <div className="mt-4 flex gap-2">
                     <Link
                       href={`/products/${product.slug}`}
-                      className="flex-1 btn-primary py-2.5 text-xs rounded-xl"
+                      className="flex-1 btn-primary py-2 text-[10px] md:text-xs rounded-xl"
                     >
-                      View Details
+                      <span className="hidden sm:inline">View Details</span>
+                      <span className="sm:hidden">Details</span>
                     </Link>
                     <Link
                       href="/contact"
-                      className="px-3 py-2.5 rounded-xl border border-gray-200 text-xs font-medium text-gray-600 hover:border-primary/30 hover:text-primary transition-all"
+                      className="px-2 md:px-3 py-2 rounded-xl border border-gray-200 text-[10px] md:text-xs font-medium text-gray-600 hover:border-primary/30 hover:text-primary transition-all flex items-center justify-center"
                     >
                       Quote
                     </Link>
