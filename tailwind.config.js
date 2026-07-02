@@ -1,22 +1,165 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./lib/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        brand: {
-          blue: '#0052CC', // Vibrant Digital Cobalt Blue
-          charcoal: '#212529', // Deep Slate/Charcoal
-          gray: '#F8F9FA', // Pure Minimalist Light Gray
-        }
+        primary: {
+          DEFAULT: '#0B5ED7',
+          50: '#EBF2FE',
+          100: '#D6E5FD',
+          200: '#ADCBFB',
+          300: '#85B1F9',
+          400: '#5C97F7',
+          500: '#0B5ED7',
+          600: '#094DB3',
+          700: '#073C8F',
+          800: '#052B6B',
+          900: '#031A47',
+          950: '#020F2B',
+        },
+        accent: {
+          DEFAULT: '#00B4D8',
+          50: '#E0F7FB',
+          100: '#B3ECF5',
+          200: '#80E0EE',
+          300: '#4DD4E7',
+          400: '#26CAE1',
+          500: '#00B4D8',
+          600: '#0093B0',
+          700: '#007188',
+          800: '#005060',
+          900: '#002F38',
+        },
+        dark: '#1F2937',
+        light: '#F8FAFC',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Open Sans', 'Helvetica Neue', 'sans-serif'],
-      }
+        sans: ['var(--font-inter)', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['var(--font-outfit)', 'system-ui', 'sans-serif'],
+      },
+      animation: {
+        'float': 'float 6s ease-in-out infinite',
+        'float-slow': 'float 8s ease-in-out infinite',
+        'float-delayed': 'float 6s ease-in-out 2s infinite',
+        'glow': 'glow 2s ease-in-out infinite alternate',
+        'glow-pulse': 'glowPulse 3s ease-in-out infinite',
+        'marquee': 'marquee 40s linear infinite',
+        'marquee-reverse': 'marqueeReverse 40s linear infinite',
+        'shimmer': 'shimmer 2s linear infinite',
+        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'spin-slow': 'spin 8s linear infinite',
+        'bounce-slow': 'bounce 3s infinite',
+        'slide-up': 'slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+        'slide-down': 'slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+        'fade-in': 'fadeIn 0.6s ease-out',
+        'scale-in': 'scaleIn 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+        'gradient': 'gradient 8s ease infinite',
+        'blob': 'blob 7s infinite',
+        'blob-slow': 'blob 12s infinite',
+        'counter-fill': 'counterFill 2s ease-out forwards',
+        'wave': 'wave 8s ease-in-out infinite',
+      },
+      keyframes: {
+        float: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-20px)' },
+        },
+        glow: {
+          '0%': { boxShadow: '0 0 20px rgba(11, 94, 215, 0.2)' },
+          '100%': { boxShadow: '0 0 40px rgba(11, 94, 215, 0.5)' },
+        },
+        glowPulse: {
+          '0%, 100%': { boxShadow: '0 0 20px rgba(11, 94, 215, 0.15)' },
+          '50%': { boxShadow: '0 0 40px rgba(11, 94, 215, 0.35)' },
+        },
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+        marqueeReverse: {
+          '0%': { transform: 'translateX(-50%)' },
+          '100%': { transform: 'translateX(0%)' },
+        },
+        shimmer: {
+          '0%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' },
+        },
+        slideUp: {
+          '0%': { transform: 'translateY(30px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        slideDown: {
+          '0%': { transform: 'translateY(-10px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        scaleIn: {
+          '0%': { transform: 'scale(0.9)', opacity: '0' },
+          '100%': { transform: 'scale(1)', opacity: '1' },
+        },
+        gradient: {
+          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+        },
+        blob: {
+          '0%': { transform: 'translate(0px, 0px) scale(1)' },
+          '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+          '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+          '100%': { transform: 'translate(0px, 0px) scale(1)' },
+        },
+        counterFill: {
+          '0%': { width: '0%' },
+          '100%': { width: 'var(--fill-width, 100%)' },
+        },
+        wave: {
+          '0%, 100%': { transform: 'translateX(0) translateZ(0) scaleY(1)' },
+          '50%': { transform: 'translateX(-25%) translateZ(0) scaleY(0.55)' },
+        },
+      },
+      backdropBlur: {
+        xs: '2px',
+      },
+      boxShadow: {
+        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
+        'glass-lg': '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
+        'glass-xl': '0 16px 48px 0 rgba(31, 38, 135, 0.2)',
+        'premium': '0 4px 30px rgba(0, 0, 0, 0.06)',
+        'premium-lg': '0 20px 60px -15px rgba(0, 0, 0, 0.12)',
+        'premium-xl': '0 25px 80px -15px rgba(0, 0, 0, 0.18)',
+        'glow-primary': '0 0 40px rgba(11, 94, 215, 0.25)',
+        'glow-accent': '0 0 40px rgba(0, 180, 216, 0.25)',
+        'inner-glow': 'inset 0 2px 20px 0 rgba(11, 94, 215, 0.08)',
+        'card': '0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04)',
+        'card-hover': '0 8px 30px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04)',
+        'nav': '0 1px 3px rgba(0,0,0,0.03), 0 4px 20px rgba(0,0,0,0.04)',
+      },
+      borderRadius: {
+        '4xl': '2rem',
+        '5xl': '2.5rem',
+      },
+      spacing: {
+        '18': '4.5rem',
+        '88': '22rem',
+        '128': '32rem',
+      },
+      transitionTimingFunction: {
+        'premium': 'cubic-bezier(0.16, 1, 0.3, 1)',
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'hero-pattern': 'linear-gradient(135deg, rgba(11, 94, 215, 0.05) 0%, rgba(0, 180, 216, 0.03) 100%)',
+      },
     },
   },
   plugins: [],
-}
+};
