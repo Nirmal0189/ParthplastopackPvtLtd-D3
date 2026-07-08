@@ -40,19 +40,24 @@ export default function ProductsPage() {
 
         // Map Products
         const activeProducts = productData.filter((p: any) => p.status === 'ACTIVE');
-        const mappedProducts = activeProducts.map((p: any) => ({
-          id: p._id,
-          name: p.name,
-          slug: p.slug,
-          categoryId: p.category?._id || 'other',
-          categoryLabel: p.category?.title || 'Other',
-          image: p.images?.[0] || '/images/products/placeholder.webp', // fallback image
-          badge: p.isFeatured ? 'Featured' : p.isTrending ? 'Trending' : '',
+        const mappedProducts = activeProducts.map((p: any) => {
+          const catId = p.category?._id || (typeof p.category === 'string' ? p.category : 'other');
+          const catLabel = p.category?.title || 'Other';
+          
+          return {
+            id: p._id,
+            name: p.name,
+            slug: p.slug,
+            categoryId: catId,
+            categoryLabel: catLabel,
+            image: p.images?.[0] || '/images/products/placeholder.webp', // fallback image
+            badge: p.isFeatured ? 'Featured' : p.isTrending ? 'Trending' : '',
           material: p.specifications?.material || 'N/A',
           capacity: p.specifications?.capacity || 'N/A',
           color: p.specifications?.color || 'N/A',
-        }));
-        setDbProducts(mappedProducts);
+        };
+      });
+      setDbProducts(mappedProducts);
       } catch (err) {
         console.error(err);
       } finally {

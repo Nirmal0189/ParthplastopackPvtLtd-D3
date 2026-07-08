@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { createProduct, updateProduct } from '@/actions/product.actions';
 import { getCategories } from '@/actions/category.actions';
+import { getAttributes } from '@/actions/attribute.actions';
 import { Save, ArrowLeft, Upload, X } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -14,6 +15,7 @@ export default function ProductForm({ initialData }: { initialData?: any }) {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState('');
   const [categories, setCategories] = useState<any[]>([]);
+  const [attributes, setAttributes] = useState<any[]>([]);
   
   const [formData, setFormData] = useState({
     name: initialData?.name || '',
@@ -36,7 +38,12 @@ export default function ProductForm({ initialData }: { initialData?: any }) {
   });
 
   useEffect(() => {
-    getCategories().then(setCategories).catch(console.error);
+    Promise.all([getCategories(), getAttributes()])
+      .then(([cats, attrs]) => {
+        setCategories(cats);
+        setAttributes(attrs);
+      })
+      .catch(console.error);
   }, []);
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -117,6 +124,41 @@ export default function ProductForm({ initialData }: { initialData?: any }) {
     } finally {
       setLoading(false);
     }
+  };
+
+  // Helper to render dynamic input/select for specifications
+  const renderSpecInput = (field: string, label: string, placeholder: string) => {
+    const attr = attributes.find(a => a.name.toLowerCase() === field.toLowerCase());
+    
+    if (attr && attr.options && attr.options.length > 0) {
+      return (
+        <div>
+          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">{label}</label>
+          <select 
+            className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"
+            value={(formData.specifications as any)[field] || ''}
+            onChange={(e) => handleSpecChange(field, e.target.value)}
+          >
+            <option value="">Select {label}</option>
+            {attr.options.map((opt: string) => (
+              <option key={opt} value={opt}>{opt}</option>
+            ))}
+          </select>
+        </div>
+      );
+    }
+
+    return (
+      <div>
+        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">{label}</label>
+        <input 
+          type="text" placeholder={placeholder}
+          className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"
+          value={(formData.specifications as any)[field] || ''}
+          onChange={(e) => handleSpecChange(field, e.target.value)}
+        />
+      </div>
+    );
   };
 
   return (
@@ -246,51 +288,11 @@ export default function ProductForm({ initialData }: { initialData?: any }) {
         <div className="pt-4 border-t border-gray-100 dark:border-slate-800">
           <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Specifications</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Material</label>
-              <input 
-                type="text" placeholder="e.g. HDPE, PET"
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"
-                value={formData.specifications.material}
-                onChange={(e) => handleSpecChange('material', e.target.value)}
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Capacity</label>
-              <input 
-                type="text" placeholder="e.g. 500ml, 1L"
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"
-                value={formData.specifications.capacity}
-                onChange={(e) => handleSpecChange('capacity', e.target.value)}
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Colors</label>
-              <input 
-                type="text" placeholder="e.g. White, Amber, Custom"
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"
-                value={formData.specifications.color}
-                onChange={(e) => handleSpecChange('color', e.target.value)}
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Dimensions</label>
-              <input 
-                type="text" placeholder="e.g. 10cm x 5cm"
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"
-                value={formData.specifications.dimensions}
-                onChange={(e) => handleSpecChange('dimensions', e.target.value)}
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Weight</label>
-              <input 
-                type="text" placeholder="e.g. 50g"
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"
-                value={formData.specifications.weight}
-                onChange={(e) => handleSpecChange('weight', e.target.value)}
-              />
-            </div>
+            {renderSpecInput('material', 'Material', 'e.g. HDPE, PET')}
+            {renderSpecInput('capacity', 'Capacity', 'e.g. 500ml, 1L')}
+            {renderSpecInput('color', 'Colors', 'e.g. White, Amber, Custom')}
+            {renderSpecInput('dimensions', 'Dimensions', 'e.g. 10cm x 5cm')}
+            {renderSpecInput('weight', 'Weight', 'e.g. 50g')}
           </div>
         </div>
 
