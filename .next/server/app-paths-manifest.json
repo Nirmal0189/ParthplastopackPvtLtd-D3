@@ -1,9 +1,7 @@
 {
   "/page": "app/page.js",
   "/products/[slug]/page": "app/products/[slug]/page.js",
-  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
-  "/icon.png/route": "app/icon.png/route.js",
-  "/admin/categories/[id]/page": "app/admin/categories/[id]/page.js",
   "/admin/categories/page": "app/admin/categories/page.js",
+  "/admin/categories/[id]/page": "app/admin/categories/[id]/page.js",
   "/admin/products/page": "app/admin/products/page.js"
 }
