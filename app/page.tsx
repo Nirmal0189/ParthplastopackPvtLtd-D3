@@ -9,7 +9,6 @@ import ProcessSection from '@/components/home/ProcessSection';
 import FactorySection from '@/components/home/FactorySection';
 import QualitySection from '@/components/home/QualitySection';
 import ClientLogos from '@/components/home/ClientLogos';
-import TestimonialsSection from '@/components/home/TestimonialsSection';
 import FAQSection from '@/components/home/FAQSection';
 import ContactSection from '@/components/home/ContactSection';
 import CTASection from '@/components/home/CTASection';
@@ -30,7 +29,6 @@ export default function HomePage() {
         <FactorySection />
         <QualitySection />
         <ClientLogos />
-        <TestimonialsSection />
         <FAQSection />
         <ContactSection />
         <CTASection />

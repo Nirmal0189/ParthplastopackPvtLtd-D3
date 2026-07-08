@@ -15,7 +15,7 @@ const stats = [
 
 const floatingProducts = [
   { src: '/images/products/jar1.webp', alt: 'Protein Jar', className: 'top-[15%] right-[8%] w-24 md:w-32' },
-  { src: '/images/products/tube1.webp', alt: 'Effervescent Tube', className: 'bottom-[20%] right-[15%] w-20 md:w-28' },
+  { src: '/images/products/tube1.webp', alt: 'Effervescent Tube', className: 'bottom-[30%] right-[15%] w-20 md:w-28' },
   { src: '/images/products/Cap.webp', alt: 'Plastic Cap', className: 'top-[30%] left-[5%] w-16 md:w-24' },
 ];
 
@@ -39,7 +39,7 @@ export default function HeroSection() {
       {floatingProducts.map((product, i) => (
         <motion.div
           key={i}
-          className={`absolute hidden lg:block z-[2] ${product.className}`}
+          className={`absolute hidden lg:block z-[20] ${product.className}`}
           animate={{ y: [-10, 15, -10] }}
           transition={{ duration: 5 + i * 1.5, repeat: Infinity, ease: 'easeInOut', delay: i * 0.8 }}
         >

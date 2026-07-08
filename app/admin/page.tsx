@@ -5,10 +5,10 @@ import { staggerContainer, staggerItem } from '@/lib/animations';
 import { Package, MessageSquare, Users, Eye } from 'lucide-react';
 
 const stats = [
-  { title: 'Total Products', value: '142', change: '+12%', icon: Package, color: 'bg-blue-500' },
-  { title: 'Pending Quotations', value: '28', change: '+5%', icon: MessageSquare, color: 'bg-orange-500' },
-  { title: 'Total Visitors', value: '14,205', change: '+22%', icon: Eye, color: 'bg-purple-500' },
-  { title: 'New Leads', value: '89', change: '+18%', icon: Users, color: 'bg-emerald-500' },
+  { title: 'Total Products', value: '0', change: '+12%', icon: Package, color: 'bg-blue-500' },
+  { title: 'Pending Quotations', value: '0', change: '+5%', icon: MessageSquare, color: 'bg-orange-500' },
+  { title: 'Total Visitors', value: '0', change: '+22%', icon: Eye, color: 'bg-purple-500' },
+  { title: 'New Leads', value: '0', change: '+18%', icon: Users, color: 'bg-emerald-500' },
 ];
 
 export default function AdminDashboardPage() {
@@ -19,7 +19,7 @@ export default function AdminDashboardPage() {
         <p className="text-slate-500 dark:text-slate-400 mt-2">Welcome back, Admin! Here is what's happening today.</p>
       </div>
 
-      <motion.div 
+      <motion.div
         variants={staggerContainer}
         initial="hidden"
         animate="visible"
@@ -28,7 +28,7 @@ export default function AdminDashboardPage() {
         {stats.map((stat) => {
           const Icon = stat.icon;
           return (
-            <motion.div 
+            <motion.div
               key={stat.title}
               variants={staggerItem}
               className="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow"

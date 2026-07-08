@@ -2,10 +2,10 @@
 
 import { motion } from 'framer-motion';
 import { Search, X } from 'lucide-react';
-import { categories } from '@/data/products';
 import { cn } from '@/lib/utils';
 
 interface ProductFiltersProps {
+  categories: any[];
   activeCategory: string;
   onCategoryChange: (category: string) => void;
   searchQuery: string;
@@ -14,6 +14,7 @@ interface ProductFiltersProps {
 }
 
 export default function ProductFilters({
+  categories,
   activeCategory,
   onCategoryChange,
   searchQuery,
@@ -64,7 +65,13 @@ export default function ProductFilters({
                   : 'text-gray-600 hover:bg-gray-50 hover:text-dark border-transparent lg:border-transparent bg-gray-50/50 lg:bg-transparent'
               )}
             >
-              <span className="text-base shrink-0">{cat.icon}</span>
+              <span className="text-base shrink-0 flex items-center justify-center">
+                {cat.icon && (cat.icon.startsWith('/') || cat.icon.startsWith('http')) ? (
+                  <img src={cat.icon} alt={cat.label} className="w-5 h-5 object-contain" />
+                ) : (
+                  cat.icon || '📦'
+                )}
+              </span>
               <span className="flex-1 leading-tight">{cat.label}</span>
               {activeCategory === cat.id && (
                 <div className="hidden lg:block w-1.5 h-1.5 rounded-full bg-primary shrink-0" />

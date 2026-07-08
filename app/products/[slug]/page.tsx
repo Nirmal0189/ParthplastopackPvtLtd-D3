@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -15,14 +15,88 @@ import BackToTop from '@/components/shared/BackToTop';
 import WhatsAppFloat from '@/components/shared/WhatsAppFloat';
 import QuoteModal from '@/components/shared/QuoteModal';
 import ProductCard from '@/components/products/ProductCard';
-import { getProductBySlug, getRelatedProducts, products } from '@/data/products';
+import { getProductBySlug, getProducts } from '@/actions/product.actions';
 
 export default function ProductDetailPage() {
   const params = useParams();
   const slug = params?.slug as string;
-  const product = getProductBySlug(slug);
+  
+  const [product, setProduct] = useState<any>(null);
+  const [relatedProducts, setRelatedProducts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(0);
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
+
+  useEffect(() => {
+    async function loadProduct() {
+      try {
+        const dbProduct = await getProductBySlug(slug);
+        
+        if (dbProduct) {
+          // Map DB schema to frontend schema
+          const mappedProduct = {
+            id: dbProduct._id,
+            name: dbProduct.name,
+            slug: dbProduct.slug,
+            categoryId: dbProduct.category?._id || 'other',
+            categoryLabel: dbProduct.category?.title || 'Other',
+            image: dbProduct.images?.[0] || '/images/products/placeholder.webp',
+            gallery: dbProduct.images?.length ? dbProduct.images : ['/images/products/placeholder.webp'],
+            badge: dbProduct.isFeatured ? 'Featured' : dbProduct.isTrending ? 'Trending' : '',
+            description: dbProduct.description || dbProduct.shortDescription || 'No description available.',
+            material: dbProduct.specifications?.material || 'N/A',
+            capacity: dbProduct.specifications?.capacity || 'N/A',
+            color: dbProduct.specifications?.color || 'N/A',
+            dimensions: dbProduct.specifications?.dimensions || '',
+            weight: dbProduct.specifications?.weight || '',
+            moq: dbProduct.moq || 1000,
+            features: dbProduct.features || [],
+            applications: dbProduct.applications || [],
+          };
+          setProduct(mappedProduct);
+
+          // Fetch related products
+          const allProducts = await getProducts();
+          const related = allProducts
+            .filter((p: any) => p.status === 'ACTIVE' && p._id !== dbProduct._id && p.category?._id === dbProduct.category?._id)
+            .slice(0, 4)
+            .map((p: any) => ({
+              id: p._id,
+              name: p.name,
+              slug: p.slug,
+              categoryId: p.category?._id || 'other',
+              categoryLabel: p.category?.title || 'Other',
+              image: p.images?.[0] || '/images/products/placeholder.webp',
+              badge: p.isFeatured ? 'Featured' : p.isTrending ? 'Trending' : '',
+              material: p.specifications?.material || 'N/A',
+              capacity: p.specifications?.capacity || 'N/A',
+              color: p.specifications?.color || 'N/A',
+            }));
+          setRelatedProducts(related);
+        }
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    
+    if (slug) {
+      loadProduct();
+    }
+  }, [slug]);
+
+  if (loading) {
+    return (
+      <>
+        <Navbar />
+        <main className="pt-28 pb-20 bg-light min-h-screen flex items-center justify-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+        </main>
+        <Footer />
+      </>
+    );
+  }
 
   if (!product) {
     return (
@@ -43,8 +117,7 @@ export default function ProductDetailPage() {
     );
   }
 
-  const images = product.gallery || [product.image];
-  const relatedProducts = getRelatedProducts(product.id, product.category);
+  const images = product.gallery;
 
   const handleShare = async () => {
     const url = window.location.href;
@@ -127,7 +200,7 @@ export default function ProductDetailPage() {
               {/* Thumbnail Gallery */}
               {images.length > 1 && (
                 <div className="flex gap-3">
-                  {images.map((img, i) => (
+                  {images.map((img: string, i: number) => (
                     <button
                       key={i}
                       onClick={() => setSelectedImage(i)}
@@ -165,7 +238,7 @@ export default function ProductDetailPage() {
                 <span className="text-xs text-gray-400">(Based on client reviews)</span>
               </div>
 
-              <p className="mt-5 text-gray-500 leading-relaxed">{product.description}</p>
+              <p className="mt-5 text-gray-500 leading-relaxed whitespace-pre-wrap">{product.description}</p>
 
               {/* Specifications */}
               <div className="mt-8 space-y-3">
@@ -223,29 +296,33 @@ export default function ProductDetailPage() {
               </div>
 
               {/* Features */}
-              <div className="mt-6">
-                <h3 className="text-sm font-bold text-dark uppercase tracking-wider mb-3">Key Features</h3>
-                <div className="grid grid-cols-2 gap-2">
-                  {product.features.map((feature) => (
-                    <div key={feature} className="flex items-center gap-2 text-sm text-gray-600">
-                      <Check size={14} className="text-green-500 shrink-0" />
-                      {feature}
-                    </div>
-                  ))}
+              {product.features && product.features.length > 0 && (
+                <div className="mt-6">
+                  <h3 className="text-sm font-bold text-dark uppercase tracking-wider mb-3">Key Features</h3>
+                  <div className="grid grid-cols-2 gap-2">
+                    {product.features.map((feature: string) => (
+                      <div key={feature} className="flex items-center gap-2 text-sm text-gray-600">
+                        <Check size={14} className="text-green-500 shrink-0" />
+                        {feature}
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* Applications */}
-              <div className="mt-6">
-                <h3 className="text-sm font-bold text-dark uppercase tracking-wider mb-3">Applications</h3>
-                <div className="flex flex-wrap gap-2">
-                  {product.applications.map((app) => (
-                    <span key={app} className="px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs text-gray-600">
-                      {app}
-                    </span>
-                  ))}
+              {product.applications && product.applications.length > 0 && (
+                <div className="mt-6">
+                  <h3 className="text-sm font-bold text-dark uppercase tracking-wider mb-3">Applications</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {product.applications.map((app: string) => (
+                      <span key={app} className="px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs text-gray-600">
+                        {app}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* CTAs */}
               <div className="mt-8 flex flex-wrap gap-3">
