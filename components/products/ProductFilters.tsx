@@ -50,7 +50,7 @@ export default function ProductFilters({
       {/* Category Filter */}
       <div>
         <h4 className="text-sm font-semibold text-dark mb-3">Categories</h4>
-        <div className="space-y-1">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-1 gap-2">
           {categories.map((cat) => (
             <motion.button
               key={cat.id}
@@ -58,16 +58,16 @@ export default function ProductFilters({
               whileTap={{ scale: 0.98 }}
               onClick={() => onCategoryChange(cat.id)}
               className={cn(
-                'w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 text-left',
+                'w-full flex items-center gap-2 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 text-left h-full border',
                 activeCategory === cat.id
-                  ? 'bg-primary/[0.08] text-primary border border-primary/[0.15]'
-                  : 'text-gray-600 hover:bg-gray-50 hover:text-dark'
+                  ? 'bg-primary/[0.08] text-primary border-primary/[0.15] shadow-sm'
+                  : 'text-gray-600 hover:bg-gray-50 hover:text-dark border-transparent lg:border-transparent bg-gray-50/50 lg:bg-transparent'
               )}
             >
-              <span className="text-base">{cat.icon}</span>
-              <span className="flex-1">{cat.label}</span>
+              <span className="text-base shrink-0">{cat.icon}</span>
+              <span className="flex-1 leading-tight">{cat.label}</span>
               {activeCategory === cat.id && (
-                <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                <div className="hidden lg:block w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
               )}
             </motion.button>
           ))}

@@ -70,47 +70,23 @@ export default function ProcessSection() {
           </motion.div>
         </div>
 
-        {/* Mobile: Vertical Steps */}
-        <div className="lg:hidden">
+        {/* Mobile: Grid Steps */}
+        <div className="lg:hidden mt-8">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-30px' }}
             variants={staggerContainer}
-            className="relative pl-8"
+            className="grid grid-cols-2 gap-3 sm:gap-4"
           >
-            {/* Vertical Line */}
-            <div className="absolute top-0 left-6 bottom-0 w-0.5 bg-gray-200">
-              <motion.div
-                initial={{ scaleY: 0 }}
-                whileInView={{ scaleY: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.5, delay: 0.3 }}
-                className="h-full bg-gradient-to-b from-primary to-accent origin-top"
-              />
-            </div>
-
-            <div className="space-y-8">
-              {processSteps.map((step) => (
-                <motion.div key={step.id} variants={staggerItem} className="relative flex gap-5">
-                  {/* Dot */}
-                  <div className="absolute -left-8 top-1 w-5 h-5 rounded-full bg-white border-2 border-primary shadow-sm flex items-center justify-center">
-                    <div className="w-2 h-2 rounded-full bg-primary" />
-                  </div>
-
-                  <div className="glass-card rounded-xl p-4 flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="text-2xl">{step.icon}</span>
-                      <div>
-                        <span className="text-[10px] font-bold text-primary/50 tracking-wider">STEP {step.step}</span>
-                        <h4 className="text-sm font-semibold text-dark">{step.title}</h4>
-                      </div>
-                    </div>
-                    <p className="text-xs text-gray-400 leading-relaxed">{step.description}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+            {processSteps.map((step) => (
+              <motion.div key={step.id} variants={staggerItem} className="glass-card rounded-xl p-4 flex flex-col items-center text-center border border-gray-100 bg-white/50 shadow-sm">
+                <div className="text-2xl mb-2 text-primary w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm border border-gray-100">{step.icon}</div>
+                <span className="text-[10px] font-bold text-primary/60 tracking-wider mb-1">STEP {step.step}</span>
+                <h4 className="text-xs sm:text-sm font-semibold text-dark mb-1">{step.title}</h4>
+                <p className="text-[10px] sm:text-xs text-gray-500 leading-relaxed line-clamp-3">{step.description}</p>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </div>

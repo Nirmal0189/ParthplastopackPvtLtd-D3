@@ -63,20 +63,21 @@ export default function QualitySection() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={staggerContainer}
-                className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+                className="grid grid-cols-2 gap-3 sm:gap-4"
               >
                 {certifications.map((cert) => (
                   <motion.div
                     key={cert.title}
                     variants={staggerItem}
                     whileHover={{ y: -4, scale: 1.02 }}
-                    className="p-5 rounded-2xl bg-white border border-gray-100 hover:border-primary/[0.15] hover:shadow-premium transition-all duration-500"
+                    className="p-3 sm:p-5 rounded-2xl bg-white border border-gray-100 hover:border-primary/[0.15] hover:shadow-premium transition-all duration-500 flex flex-col items-center sm:items-start text-center sm:text-left"
                   >
-                    <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${cert.color} flex items-center justify-center mb-3`}>
-                      <cert.icon size={20} className="text-primary" />
+                    <div className={`w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br ${cert.color} flex items-center justify-center mb-2 sm:mb-3 shrink-0`}>
+                      <cert.icon size={18} className="text-primary sm:hidden" />
+                      <cert.icon size={20} className="text-primary hidden sm:block" />
                     </div>
-                    <h4 className="text-base font-bold text-dark">{cert.title}</h4>
-                    <p className="text-xs text-gray-400 mt-1">{cert.description}</p>
+                    <h4 className="text-[11px] sm:text-base font-bold text-dark leading-tight">{cert.title}</h4>
+                    <p className="text-[9px] sm:text-xs text-gray-400 mt-1 line-clamp-2">{cert.description}</p>
                   </motion.div>
                 ))}
               </motion.div>
@@ -84,11 +85,11 @@ export default function QualitySection() {
               {/* Testing checklist */}
               <div className="mt-6 p-5 rounded-2xl bg-white border border-gray-100">
                 <h4 className="text-sm font-semibold text-dark mb-3">Quality Testing Includes:</h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <div className="grid grid-cols-2 gap-2">
                   {['Dimensional Accuracy', 'Leak Testing', 'Drop Impact Test', 'MVTR Analysis', 'Chemical Compatibility', 'Visual Inspection'].map((test) => (
-                    <div key={test} className="flex items-center gap-2 text-sm text-gray-500">
-                      <CheckCircle2 size={14} className="text-green-500 shrink-0" />
-                      {test}
+                    <div key={test} className="flex items-start sm:items-center gap-1.5 sm:gap-2 text-[10px] sm:text-sm text-gray-500">
+                      <CheckCircle2 size={12} className="text-green-500 shrink-0 mt-0.5 sm:mt-0 sm:w-[14px] sm:h-[14px]" />
+                      <span className="leading-tight">{test}</span>
                     </div>
                   ))}
                 </div>

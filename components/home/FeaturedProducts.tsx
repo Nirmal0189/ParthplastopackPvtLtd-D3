@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import SmoothImage from '@/components/shared/SmoothImage';
 import Link from 'next/link';
-import { ArrowRight, Heart, Eye } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import SectionHeading from '@/components/shared/SectionHeading';
 import { products } from '@/data/products';
 import { staggerContainer, staggerItem, imageZoom } from '@/lib/animations';
@@ -50,36 +50,23 @@ export default function FeaturedProducts() {
                 className="group card-3d rounded-2xl overflow-hidden h-full flex flex-col"
               >
                 {/* Image */}
-                <div className="relative h-40 md:h-60 bg-gradient-to-br from-gray-50 to-white flex items-center justify-center p-3 md:p-6 overflow-hidden">
-                  <motion.div variants={imageZoom}>
+                <div className="relative h-44 md:h-60 bg-gradient-to-br from-gray-50 to-white flex items-center justify-center p-4 md:p-6 overflow-hidden">
+                  <motion.div variants={imageZoom} className="w-full h-full flex items-center justify-center">
                     <SmoothImage
                       src={product.image}
                       alt={product.name}
                       width={200}
                       height={200}
-                      className="object-contain max-h-44 drop-shadow-lg"
+                      className="object-contain w-full h-full max-h-[120px] md:max-h-48 drop-shadow-lg"
                     />
                   </motion.div>
 
                   {/* Badge */}
                   {product.badge && (
-                    <span className="absolute top-3 left-3 px-2.5 py-1 bg-primary text-white text-[10px] font-bold rounded-lg uppercase tracking-wider">
+                    <span className="absolute top-3 left-3 z-10 max-w-[calc(100%-24px)] truncate px-2.5 py-1 bg-primary text-white text-[9px] md:text-[10px] font-bold rounded-lg uppercase tracking-wider">
                       {product.badge}
                     </span>
                   )}
-
-                  {/* Quick actions */}
-                  <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                    <button className="w-8 h-8 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-red-50 transition-colors">
-                      <Heart size={14} className="text-gray-400 hover:text-red-500" />
-                    </button>
-                    <Link
-                      href={`/products/${product.slug}`}
-                      className="w-8 h-8 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-primary/10 transition-colors"
-                    >
-                      <Eye size={14} className="text-gray-400 hover:text-primary" />
-                    </Link>
-                  </div>
                 </div>
 
                 {/* Content */}
@@ -92,17 +79,17 @@ export default function FeaturedProducts() {
                   </h3>
 
                   <div className="mt-3 space-y-1.5 flex-grow">
-                    <div className="flex items-center text-xs">
-                      <span className="w-16 text-gray-400 font-medium shrink-0">Material</span>
+                    <div className="flex items-start md:items-center text-[10px] md:text-xs">
+                      <span className="w-14 md:w-16 text-gray-400 font-medium shrink-0 pt-0.5 md:pt-0">Material</span>
                       <span className="text-gray-600 truncate">{product.material.split('(')[0].trim()}</span>
                     </div>
-                    <div className="flex items-center text-xs">
-                      <span className="w-16 text-gray-400 font-medium shrink-0">Capacity</span>
-                      <span className="text-gray-600">{product.capacity}</span>
+                    <div className="flex items-start md:items-center text-[10px] md:text-xs">
+                      <span className="w-14 md:w-16 text-gray-400 font-medium shrink-0 pt-0.5 md:pt-0">Capacity</span>
+                      <span className="text-gray-600 line-clamp-2 md:truncate">{product.capacity}</span>
                     </div>
-                    <div className="flex items-center text-xs">
-                      <span className="w-16 text-gray-400 font-medium shrink-0">Color</span>
-                      <span className="text-gray-600">{product.color}</span>
+                    <div className="flex items-start md:items-center text-[10px] md:text-xs">
+                      <span className="w-14 md:w-16 text-gray-400 font-medium shrink-0 pt-0.5 md:pt-0">Color</span>
+                      <span className="text-gray-600 line-clamp-2 md:truncate">{product.color}</span>
                     </div>
                   </div>
 

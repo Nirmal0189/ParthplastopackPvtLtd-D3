@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter, Outfit } from 'next/font/google';
 import './globals.css';
 import SplashScreen from '@/components/shared/SplashScreen';
+import AuthProvider from '@/components/shared/AuthProvider';
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
@@ -121,10 +122,12 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-light text-dark font-sans antialiased overflow-x-hidden">
-        {/* Subtle noise texture overlay */}
-        <div className="noise-overlay" aria-hidden="true" />
-        <SplashScreen />
-        {children}
+        <AuthProvider>
+          {/* Subtle noise texture overlay */}
+          <div className="noise-overlay" aria-hidden="true" />
+          <SplashScreen />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

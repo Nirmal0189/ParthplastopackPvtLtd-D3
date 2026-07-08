@@ -7,7 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {
   ArrowLeft, Download, Send, ChevronRight, Check, Package, Ruler, Weight,
-  Palette, Layers, Star, Heart, Share2,
+  Palette, Layers, Star, Share2,
 } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -45,6 +45,28 @@ export default function ProductDetailPage() {
 
   const images = product.gallery || [product.image];
   const relatedProducts = getRelatedProducts(product.id, product.category);
+
+  const handleShare = async () => {
+    const url = window.location.href;
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: product.name,
+          text: product.description,
+          url: url,
+        });
+      } catch (err) {
+        console.error('Error sharing:', err);
+      }
+    } else {
+      try {
+        await navigator.clipboard.writeText(url);
+        alert('Link copied to clipboard!');
+      } catch (err) {
+        console.error('Failed to copy: ', err);
+      }
+    }
+  };
 
   return (
     <>
@@ -92,10 +114,11 @@ export default function ProductDetailPage() {
 
                 {/* Actions */}
                 <div className="absolute top-4 right-4 flex gap-2">
-                  <button className="w-9 h-9 rounded-full bg-gray-100 hover:bg-red-50 flex items-center justify-center transition-colors">
-                    <Heart size={16} className="text-gray-400 hover:text-red-500" />
-                  </button>
-                  <button className="w-9 h-9 rounded-full bg-gray-100 hover:bg-primary/10 flex items-center justify-center transition-colors">
+                  <button 
+                    onClick={handleShare}
+                    title="Share Product"
+                    className="w-9 h-9 rounded-full bg-gray-100 hover:bg-primary/10 flex items-center justify-center transition-colors"
+                  >
                     <Share2 size={16} className="text-gray-400 hover:text-primary" />
                   </button>
                 </div>

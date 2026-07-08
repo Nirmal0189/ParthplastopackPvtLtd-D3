@@ -33,7 +33,7 @@ export default function FactorySection() {
           whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
           variants={staggerContainer}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+          className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5"
         >
           {galleryImages.map((img, i) => (
             <motion.div
@@ -42,7 +42,7 @@ export default function FactorySection() {
               className="group relative rounded-2xl overflow-hidden cursor-pointer"
               onClick={() => setLightboxIndex(i)}
             >
-              <div className="relative h-64 md:h-72">
+              <div className="relative h-32 sm:h-48 md:h-72">
                 <Image
                   src={img.src}
                   alt={img.alt}
@@ -54,11 +54,12 @@ export default function FactorySection() {
 
                 {/* Content on hover */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center mb-3">
-                    <ZoomIn size={20} className="text-white" />
+                  <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center mb-1 sm:mb-3">
+                    <ZoomIn size={16} className="text-white sm:hidden" />
+                    <ZoomIn size={20} className="text-white hidden sm:block" />
                   </div>
-                  <span className="text-white font-medium text-sm">{img.alt}</span>
-                  <span className="text-white/60 text-xs mt-1">{img.category}</span>
+                  <span className="text-white font-medium text-[10px] sm:text-sm text-center px-2">{img.alt}</span>
+                  <span className="text-white/60 text-[8px] sm:text-xs mt-0.5 sm:mt-1">{img.category}</span>
                 </div>
               </div>
             </motion.div>

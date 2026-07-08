@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Parth Plastopack Pvt. Ltd. | B2B Catalog & RFQ Hub</title>
-  <meta name="description" content="Premium Manufacturers of Pharma & Nutraceutical Plastic Packaging. Discover our high-quality cleanroom containers, liquid bottles, tablet jars, and closures.">
-  
+  <meta name="description"
+    content="Premium Manufacturers of Pharma & Nutraceutical Plastic Packaging. Discover our high-quality cleanroom containers, liquid bottles, tablet jars, and closures.">
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -35,7 +37,7 @@
   <!-- React and ReactDOM CDNs -->
   <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-  
+
   <!-- Babel CDN for in-browser JSX compilation -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
@@ -51,40 +53,50 @@
       margin: 0;
       padding: 0;
     }
+
     /* Custom scrollbars */
     ::-webkit-scrollbar {
       width: 6px;
       height: 6px;
     }
+
     ::-webkit-scrollbar-track {
       background: #F1F3F5;
     }
+
     ::-webkit-scrollbar-thumb {
       background: #CED4DA;
       border-radius: 4px;
     }
+
     ::-webkit-scrollbar-thumb:hover {
       background: #ADB5BD;
     }
+
     /* Ant Design customizations */
     .ant-btn-primary {
       background-color: #0052CC !important;
       box-shadow: 0 4px 6px -1px rgba(0, 82, 204, 0.2) !important;
     }
+
     .ant-btn-primary:hover {
       background-color: #0040A3 !important;
     }
+
     .ant-input-search-button {
       background-color: #0052CC !important;
       border-color: #0052CC !important;
     }
+
     .ant-input-search-button:hover {
       background-color: #0040A3 !important;
       border-color: #0040A3 !important;
     }
+
     .ant-menu-item-selected {
       color: #0052CC !important;
     }
+
     .ant-menu-item-selected::after {
       border-bottom-color: #0052CC !important;
     }
@@ -94,19 +106,23 @@
       perspective: 1000px;
       transform-style: preserve-3d;
     }
+
     .card-3d-inner {
       transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.6s ease, border-color 0.4s ease;
       transform: rotateX(0deg) rotateY(0deg) translateZ(0px);
     }
+
     .card-3d-container:hover .card-3d-inner {
       transform: rotateX(5deg) rotateY(-5deg) translateZ(8px) translateY(-4px);
       box-shadow: 0 25px 45px -15px rgba(0, 82, 204, 0.18), 0 15px 20px -10px rgba(0, 0, 0, 0.04);
       border-color: rgba(0, 82, 204, 0.25) !important;
     }
+
     .card-3d-icon-wrap {
       transform: translateZ(0px);
       transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), background-color 0.3s ease;
     }
+
     .card-3d-container:hover .card-3d-icon-wrap {
       transform: translateZ(30px) scale(1.08);
       background-color: #FFFFFF !important;
@@ -118,47 +134,50 @@
         opacity: 0;
         transform: translateY(12px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
+
     .product-fade-in {
       animation: fadeIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
     }
   </style>
 </head>
+
 <body class="bg-brand-gray text-brand-charcoal antialiased">
   <div id="root"></div>
 
   <!-- React Code -->
   <script type="text/babel">
     const { useState, useEffect } = React;
-    const { 
-      ConfigProvider, 
-      Button, 
-      Menu, 
-      Row, 
-      Col, 
-      Card, 
-      Badge, 
-      Empty, 
-      Collapse, 
-      Drawer, 
-      Form, 
-      Input, 
-      InputNumber, 
-      Space, 
+    const {
+      ConfigProvider,
+      Button,
+      Menu,
+      Row,
+      Col,
+      Card,
+      Badge,
+      Empty,
+      Collapse,
+      Drawer,
+      Form,
+      Input,
+      InputNumber,
+      Space,
       message,
       Descriptions,
       Tag,
       Modal
     } = antd;
-    const { 
-      FileTextOutlined, 
-      UserOutlined, 
-      ApartmentOutlined, 
-      MailOutlined, 
+    const {
+      FileTextOutlined,
+      UserOutlined,
+      ApartmentOutlined,
+      MailOutlined,
       InfoCircleOutlined,
       SafetyCertificateOutlined,
       CheckCircleOutlined
@@ -316,23 +335,23 @@
           className="font-sans"
         >
           <div className="py-4 md:py-6 grid grid-cols-1 md:grid-cols-12 gap-6">
-            
+
             {/* Left Side: Product Image (or fallback vector icon) */}
             <div className="md:col-span-5 flex flex-col items-center justify-center bg-gradient-to-br from-brand-gray to-gray-200/40 border border-gray-150 rounded-2xl p-6 min-h-[220px] select-none">
               {product.image ? (
-                <img 
-                  src={product.image} 
-                  alt={product.title} 
-                  className="w-28 h-28 object-contain drop-shadow-md mb-4" 
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  className="w-28 h-28 object-contain drop-shadow-md mb-4"
                 />
               ) : (
                 <div className="w-20 h-20 rounded-2xl bg-white shadow-md flex items-center justify-center text-[#0052CC] mb-4">
                   <Icon />
                 </div>
               )}
-              <Badge 
-                count="GMP STANDARDS" 
-                style={{ backgroundColor: '#0052CC', color: '#FFFFFF', fontWeight: 'bold', fontSize: '8px', padding: '0 8px' }} 
+              <Badge
+                count="GMP STANDARDS"
+                style={{ backgroundColor: '#0052CC', color: '#FFFFFF', fontWeight: 'bold', fontSize: '8px', padding: '0 8px' }}
               />
               <span className="text-[10px] text-gray-400 mt-4 font-semibold uppercase tracking-widest text-center">
                 Pharma Grade Compliant
@@ -389,7 +408,7 @@
                 </Tag>
               </div>
             </div>
-            
+
           </div>
         </Modal>
       );
@@ -437,9 +456,8 @@
 
       return (
         <div
-          className={`fixed inset-0 bg-[#F8F9FA] z-[9999] flex flex-col items-center justify-center transition-opacity duration-500 ease-out select-none ${
-            fade ? 'opacity-0 pointer-events-none' : 'opacity-100'
-          }`}
+          className={`fixed inset-0 bg-[#F8F9FA] z-[9999] flex flex-col items-center justify-center transition-opacity duration-500 ease-out select-none ${fade ? 'opacity-0 pointer-events-none' : 'opacity-100'
+            }`}
         >
           <div className="flex flex-col items-center max-w-xs w-full px-6">
             <div className="relative w-24 h-24 mb-6 flex items-center justify-center">
@@ -519,7 +537,7 @@
       const handleFormSubmit = (values) => {
         console.log('RFQ Data:', values);
         const hideLoader = message.loading('Submitting your RFQ request...', 0);
-        
+
         setTimeout(() => {
           hideLoader();
           message.success({
@@ -570,7 +588,7 @@
         >
           <Preloader />
           <div className="min-h-screen bg-brand-gray flex flex-col font-sans antialiased">
-            
+
             {/* STICKY HEADER */}
             <header className="sticky top-0 z-50 backdrop-blur-md bg-white/80 border-b border-gray-100 px-4 md:px-8 py-3 transition-all duration-300">
               <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -590,7 +608,7 @@
                     <a href="#why-choose-us" className="font-semibold text-gray-500 hover:text-[#0052CC] transition-colors">Why Us</a>
                     <a href="#contact" className="font-semibold text-gray-500 hover:text-[#0052CC] transition-colors">Contact</a>
                   </nav>
-                  
+
                   <Button
                     type="primary"
                     size="large"
@@ -606,7 +624,7 @@
 
             {/* MAIN CONTENT */}
             <main className="flex-grow">
-              
+
               {/* HERO SECTION */}
               <section id="home" className="bg-[#F8F9FA] py-16 md:py-24 px-4 text-center border-b border-gray-100">
                 <div className="max-w-4xl mx-auto flex flex-col items-center">
@@ -654,7 +672,7 @@
                     {categories.map((cat) => {
                       const Icon = cat.icon;
                       const isActive = activeCategory === cat.id;
-                      
+
                       return (
                         <button
                           key={cat.id}
@@ -662,31 +680,28 @@
                           className="flex flex-col items-center gap-3 focus:outline-none group cursor-pointer snap-center min-w-[90px] flex-shrink-0"
                         >
                           <div
-                            className={`w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center transition-all duration-300 border overflow-hidden ${
-                              isActive
-                                ? cat.image
-                                  ? 'bg-white border-[#0052CC] border-2 scale-110 shadow-lg shadow-[#0052CC]/15'
-                                  : 'bg-[#0052CC] border-[#0052CC] text-white scale-110 shadow-lg shadow-[#0052CC]/25'
-                                : 'bg-brand-gray border-gray-150 text-gray-500 group-hover:bg-white group-hover:border-gray-300 group-hover:text-[#0052CC] group-hover:scale-105'
-                            }`}
+                            className={`w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center transition-all duration-300 border overflow-hidden ${isActive
+                              ? cat.image
+                                ? 'bg-white border-[#0052CC] border-2 scale-110 shadow-lg shadow-[#0052CC]/15'
+                                : 'bg-[#0052CC] border-[#0052CC] text-white scale-110 shadow-lg shadow-[#0052CC]/25'
+                              : 'bg-brand-gray border-gray-150 text-gray-500 group-hover:bg-white group-hover:border-gray-300 group-hover:text-[#0052CC] group-hover:scale-105'
+                              }`}
                           >
                             {cat.image ? (
-                              <img 
-                                src={cat.image} 
-                                alt={cat.name} 
-                                className={`w-full h-full object-contain p-2 rounded-full transition-all duration-300 ${
-                                  isActive ? 'scale-105' : ''
-                                }`}
+                              <img
+                                src={cat.image}
+                                alt={cat.name}
+                                className={`w-full h-full object-contain p-2 rounded-full transition-all duration-300 ${isActive ? 'scale-105' : ''
+                                  }`}
                               />
                             ) : (
                               <Icon />
                             )}
                           </div>
-                          
+
                           <span
-                            className={`text-xs font-semibold tracking-wide transition-all duration-200 ${
-                              isActive ? 'text-[#0052CC]' : 'text-gray-500 group-hover:text-brand-charcoal'
-                            }`}
+                            className={`text-xs font-semibold tracking-wide transition-all duration-200 ${isActive ? 'text-[#0052CC]' : 'text-gray-500 group-hover:text-brand-charcoal'
+                              }`}
                           >
                             {cat.name}
                           </span>
@@ -719,9 +734,9 @@
                       const Icon = product.icon;
                       return (
                         <Col xs={24} sm={12} md={8} key={product.id} className="product-fade-in">
-                          
+
                           {/* 3D Perspective Card Wrapper */}
-                          <div 
+                          <div
                             className="card-3d-container cursor-pointer h-full"
                             onClick={() => handleOpenProductDetails(product)}
                           >
@@ -732,12 +747,12 @@
                               cover={
                                 <div className="h-56 w-full bg-transparent flex items-center justify-center relative select-none overflow-hidden">
                                   <div className="absolute top-3 right-3 z-10">
-                                    <Badge 
-                                      count={categoryLabels[product.category]} 
-                                      style={{ backgroundColor: 'rgba(255, 255, 255, 0.85)', color: '#212529', fontWeight: '600', fontSize: '9px', border: '1px solid #E2E8F0', padding: '0 8px' }} 
+                                    <Badge
+                                      count={categoryLabels[product.category]}
+                                      style={{ backgroundColor: 'rgba(255, 255, 255, 0.85)', color: '#212529', fontWeight: '600', fontSize: '9px', border: '1px solid #E2E8F0', padding: '0 8px' }}
                                     />
                                   </div>
-                                  
+
                                   {/* 3D Inner floating wrapper or Product Image */}
                                   {product.image ? (
                                     <img src={product.image} alt={product.title} className="card-3d-image-float w-full h-full object-contain p-2" />
@@ -757,7 +772,7 @@
                                     </h3>
                                     <span className="text-xs text-[#0052CC] hover:underline font-semibold flex-shrink-0 mt-1">ℹ Details</span>
                                   </div>
-                                  
+
                                   <div className="space-y-2 mb-6">
                                     <div className="flex items-start text-xs">
                                       <span className="font-semibold w-16 flex-shrink-0 text-gray-400 uppercase tracking-wider text-[10px]">Material</span>
@@ -909,16 +924,27 @@
                         11, Swagat Ind. Park-2, Indore - Ahmedabad Highway, Nr. Bhavda Patiya, Kuha, Ahmedabad, Gujarat, India.
                       </span>
                       <a
-                        href="https://maps.google.com/?q=11,+Swagat+Ind.+Park-2,+Kuha,+Ahmedabad"
+                        href="https://www.google.com/maps/dir//11,+Swagat+Ind.+Park-2,+Indore-Ahmedabad+Highway,+Nr.+Bhavda+Patiya,+Kuha,+Ahmedabad+-+382433/@23.0395302,72.6742452,15z?entry=ttu&g_ep=EgoyMDI2MDYyOS4wIKXMDSoASAFQAw%3D%3D"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-xs text-[#0052CC] hover:text-[#0040A3] font-semibold transition-colors duration-250 mt-1"
+                        className="inline-flex items-center gap-1 text-xs text-[#0052CC] hover:text-[#0040A3] font-semibold transition-colors duration-250 mt-1 mb-2"
                       >
                         <span>View Factory on Google Maps</span>
                         <svg className="w-3.5 h-3.5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
                         </svg>
                       </a>
+                      <div className="w-full rounded-xl overflow-hidden border border-gray-700/50 mt-2 shadow-lg">
+                        <iframe
+                          width="100%"
+                          height="180"
+                          style={{ border: 0 }}
+                          loading="lazy"
+                          allowFullScreen
+                          referrerPolicy="no-referrer-when-downgrade"
+                          src="https://maps.google.com/maps?q=23.0395302,72.6742452&hl=en&z=14&output=embed"
+                        ></iframe>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -964,21 +990,6 @@
                     </a>
                   </div>
 
-                  <div className="pt-4">
-                    <Button
-                      type="default"
-                      href="https://wa.me/919876543210?text=Hello%20Parth%20Plasto%20Pack,%20we%2520are%2520interested%2520in%2520requesting%2520quotes%2520and%252520samples%2520for%2520pharma%2520packaging."
-                      target="_blank"
-                      icon={
-                        <svg className="w-4 h-4 mr-1.5 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 18.97a5.969 5.969 0 01-.774-2.814c0-.19.094-.372.233-.5A8.25 8.25 0 0121 12z" />
-                        </svg>
-                      }
-                      className="bg-green-600 hover:bg-green-500 text-white border-none rounded-lg h-10 font-bold text-xs tracking-wide transition-colors duration-200 flex items-center justify-center shadow-md w-full sm:w-auto"
-                    >
-                      Chat on WhatsApp
-                    </Button>
-                  </div>
                 </div>
               </div>
 
@@ -1039,10 +1050,10 @@
                     name="name"
                     rules={[{ required: true, message: 'Please input your full name.' }]}
                   >
-                    <Input 
-                      prefix={<UserOutlined className="text-gray-400" />} 
-                      placeholder="e.g. Rahul Sharma" 
-                      className="rounded-lg py-2 text-sm" 
+                    <Input
+                      prefix={<UserOutlined className="text-gray-400" />}
+                      placeholder="e.g. Rahul Sharma"
+                      className="rounded-lg py-2 text-sm"
                     />
                   </Form.Item>
 
@@ -1051,10 +1062,10 @@
                     name="company"
                     rules={[{ required: true, message: 'Please input your company or formulation brand name.' }]}
                   >
-                    <Input 
-                      prefix={<ApartmentOutlined className="text-gray-400" />} 
-                      placeholder="e.g. Zenith LifeSciences Ltd." 
-                      className="rounded-lg py-2 text-sm" 
+                    <Input
+                      prefix={<ApartmentOutlined className="text-gray-400" />}
+                      placeholder="e.g. Zenith LifeSciences Ltd."
+                      className="rounded-lg py-2 text-sm"
                     />
                   </Form.Item>
 
@@ -1066,10 +1077,10 @@
                       { type: 'email', message: 'Please enter a valid email format.' }
                     ]}
                   >
-                    <Input 
-                      prefix={<MailOutlined className="text-gray-400" />} 
-                      placeholder="e.g. purchase@zenithlife.com" 
-                      className="rounded-lg py-2 text-sm" 
+                    <Input
+                      prefix={<MailOutlined className="text-gray-400" />}
+                      placeholder="e.g. purchase@zenithlife.com"
+                      className="rounded-lg py-2 text-sm"
                     />
                   </Form.Item>
 
@@ -1115,7 +1126,7 @@
             </Drawer>
 
             {/* TECHNICAL DETAILS SPEC SHEET MODAL */}
-            <ProductDetailsModal 
+            <ProductDetailsModal
               visible={isDetailsOpen}
               onClose={() => setIsDetailsOpen(false)}
               product={selectedProductForDetails}
@@ -1132,4 +1143,5 @@
     root.render(<App />);
   </script>
 </body>
+
 </html>

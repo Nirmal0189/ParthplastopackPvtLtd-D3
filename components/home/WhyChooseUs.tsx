@@ -35,7 +35,7 @@ export default function WhyChooseUs() {
           whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
           variants={staggerContainer}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
+          className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5"
         >
           {features.map((feature) => (
             <motion.div
@@ -45,20 +45,20 @@ export default function WhyChooseUs() {
               initial="rest"
               className="group"
             >
-              <div className="relative p-6 rounded-2xl bg-light border border-gray-100 hover:border-primary/[0.15] hover:shadow-premium transition-all duration-500 h-full">
+              <div className="relative p-3 sm:p-6 rounded-2xl bg-light border border-gray-100 hover:border-primary/[0.15] hover:shadow-premium transition-all duration-500 h-full flex flex-col items-center sm:items-start text-center sm:text-left">
                 {/* Icon */}
                 <motion.div
                   variants={iconRotate}
-                  className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center mb-4 group-hover:from-primary/[0.15] group-hover:to-accent/[0.15] transition-all duration-500"
+                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center mb-2 sm:mb-4 group-hover:from-primary/[0.15] group-hover:to-accent/[0.15] transition-all duration-500 shrink-0"
                 >
-                  <feature.icon size={22} className="text-primary" />
+                  <feature.icon size={20} className="text-primary" />
                 </motion.div>
 
                 {/* Content */}
-                <h3 className="text-base font-semibold text-dark mb-2 group-hover:text-primary transition-colors duration-300">
+                <h3 className="text-xs sm:text-base font-semibold text-dark mb-1 sm:mb-2 group-hover:text-primary transition-colors duration-300">
                   {feature.title}
                 </h3>
-                <p className="text-sm text-gray-400 leading-relaxed">
+                <p className="text-[10px] sm:text-sm text-gray-400 leading-relaxed line-clamp-3 sm:line-clamp-none">
                   {feature.description}
                 </p>
 
