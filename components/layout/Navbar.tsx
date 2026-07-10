@@ -11,10 +11,8 @@ const navLinks = [
   { name: 'Home', href: '/' },
   { name: 'About', href: '/about' },
   { name: 'Products', href: '/products' },
-  { name: 'Industries', href: '/industries' },
   { name: 'Infrastructure', href: '/infrastructure' },
   { name: 'Quality', href: '/quality' },
-  { name: 'Gallery', href: '/gallery' },
   { name: 'Contact', href: '/contact' },
 ];
 
@@ -50,7 +48,7 @@ export default function Navbar() {
         className={cn(
           'fixed top-0 left-0 right-0 z-[90] transition-all duration-500',
           isScrolled
-            ? 'bg-white[0.85] backdrop-blur-xl shadow-nav py-2'
+            ? 'bg-white/70 backdrop-blur-md border-b border-white/60 shadow-[0_4px_20px_rgb(0,0,0,0.03)] py-2'
             : 'bg-transparent py-4'
         )}
       >
@@ -149,14 +147,14 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsMobileOpen(false)}
-              className="fixed inset-0 z-[85] bg-black/20 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 z-[95] bg-black/50 backdrop-blur-sm lg:hidden"
             />
             <motion.nav
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed top-0 right-0 bottom-0 z-[88] w-80 bg-white shadow-premium-xl lg:hidden overflow-y-auto"
+              className="fixed top-0 right-0 bottom-0 z-[100] w-[85vw] max-w-sm bg-white shadow-premium-xl lg:hidden overflow-y-auto"
             >
               <div className="p-6">
                 <div className="flex items-center justify-between mb-8">

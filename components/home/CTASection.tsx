@@ -17,7 +17,7 @@ export default function CTASection() {
       }} />
 
       {/* Decorative blobs */}
-      <div className="absolute -top-20 left-1/4 w-96 h-96 bg-accent/30 rounded-full blur-[80px]" />
+      <div className="absolute -top-20 left-1/4 w-96 h-96 bg-secondary/30 rounded-full blur-[80px]" />
       <div className="absolute -bottom-20 right-1/4 w-96 h-96 bg-blue-400/30 rounded-full blur-[80px]" />
 
       <div className="section-container relative z-10 text-center">

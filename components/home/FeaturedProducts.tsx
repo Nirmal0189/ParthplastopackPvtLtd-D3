@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { staggerContainer, staggerItem, imageZoom } from '@/lib/animations';
 import { getProducts } from '@/actions/product.actions';
+import ProductCard from '@/components/products/ProductCard';
 
 export default function FeaturedProducts() {
   const [featuredProducts, setFeaturedProducts] = useState<any[]>([]);
@@ -82,75 +83,8 @@ export default function FeaturedProducts() {
             variants={staggerContainer}
             className="grid grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5 min-[1920px]:grid-cols-6 gap-3 md:gap-6"
           >
-            {featuredProducts.map((product) => (
-              <motion.div key={product.id} variants={staggerItem}>
-                <motion.div
-                  whileHover="hover"
-                  initial="rest"
-                  className="group card-3d rounded-2xl overflow-hidden h-full flex flex-col"
-                >
-                  {/* Image */}
-                  <div className="relative h-44 md:h-60 bg-gradient-to-br from-gray-50 to-white flex items-center justify-center p-4 md:p-6 overflow-hidden">
-                    <motion.div variants={imageZoom} className="w-full h-full flex items-center justify-center">
-                      <SmoothImage
-                        src={product.image}
-                        alt={product.name}
-                        width={200}
-                        height={200}
-                        className="object-contain w-full h-full max-h-[120px] md:max-h-48 drop-shadow-lg"
-                      />
-                    </motion.div>
-
-                    {/* Badge */}
-                    {product.badge && (
-                      <span className="absolute top-3 left-3 z-10 max-w-[calc(100%-24px)] truncate px-2.5 py-1 bg-primary text-white text-[9px] md:text-[10px] font-bold rounded-lg uppercase tracking-wider">
-                        {product.badge}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-3 md:p-5 flex flex-col flex-grow">
-                    <span className="text-[10px] font-semibold text-primary/60 uppercase tracking-wider">
-                      {product.categoryLabel}
-                    </span>
-                    <h3 className="text-sm font-semibold text-dark mt-1 group-hover:text-primary transition-colors line-clamp-2">
-                      {product.name}
-                    </h3>
-
-                    <div className="mt-3 space-y-1.5 flex-grow">
-                      <div className="flex items-start md:items-center text-[10px] md:text-xs">
-                        <span className="w-14 md:w-16 text-gray-400 font-medium shrink-0 pt-0.5 md:pt-0">Material</span>
-                        <span className="text-gray-600 truncate">{product.material.split('(')[0].trim()}</span>
-                      </div>
-                      <div className="flex items-start md:items-center text-[10px] md:text-xs">
-                        <span className="w-14 md:w-16 text-gray-400 font-medium shrink-0 pt-0.5 md:pt-0">Volume</span>
-                        <span className="text-gray-600 line-clamp-2 md:truncate">{product.overFlowVolume}</span>
-                      </div>
-                      <div className="flex items-start md:items-center text-[10px] md:text-xs">
-                        <span className="w-14 md:w-16 text-gray-400 font-medium shrink-0 pt-0.5 md:pt-0">Cap</span>
-                        <span className="text-gray-600 line-clamp-2 md:truncate">{product.capFitting}</span>
-                      </div>
-                    </div>
-
-                    <div className="mt-4 flex gap-2">
-                      <Link
-                        href={`/products/${product.slug}`}
-                        className="flex-1 btn-primary py-2 text-[10px] md:text-xs rounded-xl"
-                      >
-                        <span className="hidden sm:inline">View Details</span>
-                        <span className="sm:hidden">Details</span>
-                      </Link>
-                      <Link
-                        href="/contact"
-                        className="px-2 md:px-3 py-2 rounded-xl border border-gray-200 text-[10px] md:text-xs font-medium text-gray-600 hover:border-primary/30 hover:text-primary transition-all flex items-center justify-center"
-                      >
-                        Quote
-                      </Link>
-                    </div>
-                  </div>
-                </motion.div>
-              </motion.div>
+            {featuredProducts.map((product, i) => (
+              <ProductCard key={product.id} product={product} index={i} />
             ))}
           </motion.div>
         )}

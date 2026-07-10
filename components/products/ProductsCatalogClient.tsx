@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import ProductCard from '@/components/products/ProductCard';
 import ProductFilters from '@/components/products/ProductFilters';
+import CategoryShowcase from '@/components/products/CategoryShowcase';
 import { staggerContainer } from '@/lib/animations';
 
 interface ProductsCatalogClientProps {
@@ -34,26 +35,66 @@ export default function ProductsCatalogClient({ initialProducts, categories }: P
 
   return (
     <div className="section-container">
-      {/* Page Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="mb-10"
-      >
-        <span className="badge-primary mb-3 inline-block">Product Catalog</span>
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-display tracking-tight text-dark">
-          Our Products
-        </h1>
-        <p className="mt-3 text-gray-500 text-base md:text-lg max-w-2xl">
-          Explore our complete range of pharmaceutical and nutraceutical plastic packaging solutions.
-        </p>
-      </motion.div>
+      {/* Aurora Background for Header */}
+      <div className="relative mb-8 px-4 py-8 rounded-3xl overflow-hidden bg-white/30 border border-white/50 backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.02)]">
+        {/* Animated Orbs */}
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            x: [0, 50, 0],
+            y: [0, -30, 0],
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[-50%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-blue-400/20 mix-blend-multiply filter blur-[80px] opacity-70 z-0 pointer-events-none"
+        />
+        <motion.div
+          animate={{
+            scale: [1, 1.3, 1],
+            x: [0, -40, 0],
+            y: [0, 40, 0],
+          }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute bottom-[-50%] right-[-10%] w-[35vw] h-[35vw] rounded-full bg-purple-400/20 mix-blend-multiply filter blur-[80px] opacity-70 z-0 pointer-events-none"
+        />
+        <motion.div
+          animate={{
+            scale: [1, 1.1, 1],
+            x: [0, 30, 0],
+            y: [0, -20, 0],
+          }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 4 }}
+          className="absolute top-[20%] left-[30%] w-[25vw] h-[25vw] rounded-full bg-indigo-400/20 mix-blend-multiply filter blur-[60px] opacity-60 z-0 pointer-events-none"
+        />
+
+        {/* Page Header Content */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="relative z-10"
+        >
+          <span className="text-[10px] md:text-xs tracking-[0.2em] uppercase font-bold text-primary mb-3 inline-block">
+            Premium Collection
+          </span>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-medium text-slate-900 tracking-tight leading-tight">
+            Our Products
+          </h1>
+          <p className="mt-4 text-slate-600 text-base md:text-lg max-w-2xl font-light">
+            Discover our exclusive range of high-quality pharmaceutical and nutraceutical plastic packaging solutions.
+          </p>
+        </motion.div>
+      </div>
+
+      <CategoryShowcase 
+        categories={categories}
+        activeCategory={activeCategory}
+        onCategoryChange={setActiveCategory}
+      />
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
         {/* Sidebar */}
         <div className="lg:col-span-1">
-          <div className="sticky top-28 p-5 rounded-2xl bg-white border border-gray-100 shadow-card">
+          <div className="sticky top-28 p-6 rounded-2xl bg-white/70 backdrop-blur-md border border-white/60 shadow-[0_4px_20px_rgb(0,0,0,0.02)]">
             <ProductFilters
               categories={categories}
               activeCategory={activeCategory}

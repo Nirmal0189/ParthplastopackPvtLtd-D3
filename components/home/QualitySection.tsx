@@ -16,7 +16,7 @@ const certifications = [
 
 const qualityMetrics = [
   { label: 'Batch Quality Pass Rate', value: 99.8, color: 'bg-primary' },
-  { label: 'Dimensional Accuracy', value: 99.5, color: 'bg-accent' },
+  { label: 'Dimensional Accuracy', value: 99.5, color: 'bg-secondary' },
   { label: 'Customer Satisfaction', value: 98.5, color: 'bg-green-500' },
   { label: 'On-Time Delivery', value: 97, color: 'bg-amber-500' },
 ];

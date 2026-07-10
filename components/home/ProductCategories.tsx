@@ -22,7 +22,7 @@ const categoryCards = [
 export default function ProductCategories() {
   return (
     <section className="section-padding bg-light relative overflow-hidden">
-      <div className="absolute -bottom-20 -left-20 w-[400px] h-[400px] bg-accent/[0.03] rounded-full blur-[80px] pointer-events-none" />
+      <div className="absolute -bottom-20 -left-20 w-[400px] h-[400px] bg-secondary/[0.03] rounded-full blur-[80px] pointer-events-none" />
 
       <div className="section-container">
         <SectionHeading
@@ -80,8 +80,8 @@ export default function ProductCategories() {
                     </motion.div>
                   </div>
 
-                  {/* Bottom accent line */}
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary to-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                  {/* Bottom secondary line */}
+                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary to-secondary scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                 </motion.div>
               </Link>
             </motion.div>

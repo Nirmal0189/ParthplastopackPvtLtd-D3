@@ -68,7 +68,7 @@ export default async function ProductsPage() {
   return (
     <>
       <Navbar />
-      <main className="pt-28 pb-20 bg-light min-h-screen">
+      <main className="pt-28 pb-20 bg-[#F9FAFB] min-h-screen">
         <ProductsCatalogClient initialProducts={mappedProducts} categories={dbCategories} />
       </main>
       <Footer />

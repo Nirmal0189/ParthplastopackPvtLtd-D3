@@ -31,7 +31,7 @@ export default function ProcessSection() {
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1.5, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="h-full bg-gradient-to-r from-primary to-accent origin-left"
+                className="h-full bg-gradient-to-r from-primary to-secondary origin-left"
               />
             </div>
 

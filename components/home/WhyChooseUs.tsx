@@ -49,7 +49,7 @@ export default function WhyChooseUs() {
                 {/* Icon */}
                 <motion.div
                   variants={iconRotate}
-                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center mb-2 sm:mb-4 group-hover:from-primary/[0.15] group-hover:to-accent/[0.15] transition-all duration-500 shrink-0"
+                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center mb-2 sm:mb-4 group-hover:from-primary/[0.15] group-hover:to-secondary/[0.15] transition-all duration-500 shrink-0"
                 >
                   <feature.icon size={20} className="text-primary" />
                 </motion.div>
@@ -63,7 +63,7 @@ export default function WhyChooseUs() {
                 </p>
 
                 {/* Hover glow */}
-                <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-sm" />
+                <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-sm" />
               </div>
             </motion.div>
           ))}

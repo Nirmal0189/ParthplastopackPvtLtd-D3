@@ -21,16 +21,43 @@ const floatingProducts = [
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-[#F8FAFC] via-white to-[#EBF2FE]">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#F9FAFB]">
+      {/* Aurora Background Orbs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            x: [0, 50, 0],
+            y: [0, -30, 0],
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[-20%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-blue-400/20 mix-blend-multiply filter blur-[100px] opacity-70"
+        />
+        <motion.div
+          animate={{
+            scale: [1, 1.3, 1],
+            x: [0, -40, 0],
+            y: [0, 40, 0],
+          }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute bottom-[-10%] right-[-10%] w-[45vw] h-[45vw] rounded-full bg-purple-400/20 mix-blend-multiply filter blur-[100px] opacity-70"
+        />
+        <motion.div
+          animate={{
+            scale: [1, 1.1, 1],
+            x: [0, 30, 0],
+            y: [0, -20, 0],
+          }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 4 }}
+          className="absolute top-[30%] left-[30%] w-[35vw] h-[35vw] rounded-full bg-indigo-400/20 mix-blend-multiply filter blur-[80px] opacity-60"
+        />
+      </div>
+
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{
+      <div className="absolute inset-0 opacity-[0.03] z-[1]" style={{
         backgroundImage: `radial-gradient(circle at 1px 1px, #0B5ED7 1px, transparent 0)`,
         backgroundSize: '40px 40px',
       }} />
-
-      {/* Animated Blobs */}
-      <div className="blob-1 -top-32 -right-32 opacity-50" />
-      <div className="blob-2 -bottom-32 -left-32 opacity-50" />
 
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-light/80 z-[1]" />

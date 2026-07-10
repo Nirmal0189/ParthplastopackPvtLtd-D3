@@ -18,7 +18,7 @@ async function checkAdmin() {
 export async function getProducts() {
   try {
     await connectDB();
-    const products = await Product.find().populate('category', 'title').sort({ createdAt: -1 }).lean();
+    const products = await Product.find().populate({ path: 'category', model: Category, select: 'title' }).sort({ createdAt: -1 }).lean();
     return JSON.parse(JSON.stringify(products));
   } catch (error: any) {
     throw new Error(error.message);
@@ -38,7 +38,7 @@ export async function getProduct(id: string) {
 export async function getProductBySlug(slug: string) {
   try {
     await connectDB();
-    const product = await Product.findOne({ slug }).populate('category', 'title').lean();
+    const product = await Product.findOne({ slug }).populate({ path: 'category', model: Category, select: 'title' }).lean();
     return JSON.parse(JSON.stringify(product));
   } catch (error: any) {
     throw new Error(error.message);

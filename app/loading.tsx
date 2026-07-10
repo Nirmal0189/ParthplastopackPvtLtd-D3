@@ -51,7 +51,7 @@ export default function Loading() {
               initial={{ width: "30%" }}
               animate={{ width: "100%" }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="h-full bg-gradient-to-r from-primary via-accent to-primary rounded-full relative"
+              className="h-full bg-gradient-to-r from-red-600 via-yellow-500 to-red-600 rounded-full relative"
             >
               <div className="absolute inset-0 bg-white animate-shimmer" style={{ backgroundSize: '200% 100%' }} />
             </motion.div>

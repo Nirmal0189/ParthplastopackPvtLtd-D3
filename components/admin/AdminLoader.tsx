@@ -20,7 +20,7 @@ export default function AdminLoader({ text = 'Loading...' }: AdminLoaderProps) {
         <motion.div 
           animate={{ opacity: [0.2, 0.5, 0.2], scale: [0.95, 1.05, 0.95] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -inset-4 bg-gradient-to-tr from-primary/[0.1] to-accent/[0.1] rounded-2xl blur-xl" 
+          className="absolute -inset-4 bg-gradient-to-tr from-red-600/[0.1] to-yellow-500/[0.1] rounded-2xl blur-xl" 
         />
         
         {/* Floating Logo */}
@@ -45,7 +45,7 @@ export default function AdminLoader({ text = 'Loading...' }: AdminLoaderProps) {
           initial={{ x: "-100%" }}
           animate={{ x: "100%" }}
           transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-          className="h-full w-1/2 bg-gradient-to-r from-transparent via-primary to-transparent absolute"
+          className="h-full w-1/2 bg-gradient-to-r from-transparent via-red-600 to-transparent absolute"
         />
       </div>
 

@@ -14,10 +14,8 @@ const quickLinks = [
   { name: 'Home', href: '/' },
   { name: 'About Us', href: '/about' },
   { name: 'Products', href: '/products' },
-  { name: 'Industries', href: '/industries' },
   { name: 'Infrastructure', href: '/infrastructure' },
   { name: 'Quality', href: '/quality' },
-  { name: 'Gallery', href: '/gallery' },
   { name: 'Contact', href: '/contact' },
 ];
 
@@ -40,13 +38,13 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="relative bg-[#0B1120] text-gray-400 overflow-hidden">
+    <footer className="relative bg-[#0F172A] text-gray-400 overflow-hidden">
       {/* Gradient border top */}
       <div className="h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
 
       {/* Decorative blobs */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/[0.03] rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/[0.03] rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/[0.03] rounded-full blur-[100px] pointer-events-none" />
 
       {/* Main Footer */}
       <div className="section-container py-16 md:py-20 relative z-10">
