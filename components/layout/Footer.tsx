@@ -167,7 +167,7 @@ export default function Footer() {
               <input
                 type="email"
                 placeholder="Enter email"
-                className="flex-1 px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-sm text-white placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-primary/50 transition-all"
+                className="flex-1 px-3 py-2 bg-white border border-white/10 rounded-lg text-sm text-white placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-primary/50 transition-all"
               />
               <button className="px-3 py-2 bg-primary hover:bg-primary-600 rounded-lg transition-colors">
                 <Send size={16} className="text-white" />
@@ -181,7 +181,7 @@ export default function Footer() {
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-500 hover:text-white hover:bg-primary/20 hover:border-primary/30 transition-all duration-300"
+                  className="w-9 h-9 rounded-full bg-white border border-white/10 flex items-center justify-center text-gray-500 hover:text-white hover:bg-primary/20 hover:border-primary/30 transition-all duration-300"
                 >
                   <social.icon size={16} />
                 </a>

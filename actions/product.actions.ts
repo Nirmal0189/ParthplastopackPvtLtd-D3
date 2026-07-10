@@ -90,3 +90,34 @@ export async function deleteProduct(id: string) {
     return { success: false, error: error.message };
   }
 }
+
+export async function bulkImportProducts(products: any[]) {
+  try {
+    await checkAdmin();
+    await connectDB();
+    
+    const processed = products.map((p) => {
+      const data = { ...p };
+      delete data._id; 
+      delete data.createdAt;
+      delete data.updatedAt;
+      delete data.__v;
+      
+      if (typeof data.category === 'object' && data.category !== null) {
+        data.category = data.category._id || data.category;
+      }
+      
+      if (!data.slug && data.name) {
+        const randomString = Math.floor(Math.random() * 10000).toString();
+        data.slug = data.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '') + '-' + randomString;
+      }
+      return data;
+    });
+
+    await Product.insertMany(processed);
+    revalidatePath('/admin/products');
+    return { success: true, count: processed.length };
+  } catch (error: any) {
+    return { success: false, error: error.message };
+  }
+}

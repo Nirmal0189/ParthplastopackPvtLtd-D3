@@ -80,7 +80,7 @@ export default function ProcessSection() {
             className="grid grid-cols-2 gap-3 sm:gap-4"
           >
             {processSteps.map((step) => (
-              <motion.div key={step.id} variants={staggerItem} className="glass-card rounded-xl p-4 flex flex-col items-center text-center border border-gray-100 bg-white/50 shadow-sm">
+              <motion.div key={step.id} variants={staggerItem} className="glass-card rounded-xl p-4 flex flex-col items-center text-center border border-gray-100 bg-white shadow-sm">
                 <div className="text-2xl mb-2 text-primary w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm border border-gray-100">{step.icon}</div>
                 <span className="text-[10px] font-bold text-primary/60 tracking-wider mb-1">STEP {step.step}</span>
                 <h4 className="text-xs sm:text-sm font-semibold text-dark mb-1">{step.title}</h4>

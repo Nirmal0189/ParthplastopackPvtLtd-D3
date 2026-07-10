@@ -50,7 +50,7 @@ export default function Navbar() {
         className={cn(
           'fixed top-0 left-0 right-0 z-[90] transition-all duration-500',
           isScrolled
-            ? 'bg-white/[0.85] backdrop-blur-xl shadow-nav py-2'
+            ? 'bg-white[0.85] backdrop-blur-xl shadow-nav py-2'
             : 'bg-transparent py-4'
         )}
       >
@@ -92,7 +92,7 @@ export default function Navbar() {
               {/* Search */}
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="w-9 h-9 rounded-full bg-gray-100/80 hover:bg-gray-200/80 flex items-center justify-center transition-colors"
+                className="w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200/80 flex items-center justify-center transition-colors"
                 aria-label="Search"
               >
                 <Search size={16} className="text-gray-600" />
@@ -130,7 +130,7 @@ export default function Navbar() {
               {/* Mobile Hamburger */}
               <button
                 onClick={() => setIsMobileOpen(!isMobileOpen)}
-                className="lg:hidden w-10 h-10 rounded-xl bg-gray-100/80 hover:bg-gray-200/80 flex items-center justify-center transition-colors"
+                className="lg:hidden w-10 h-10 rounded-xl bg-gray-100 hover:bg-gray-200/80 flex items-center justify-center transition-colors"
                 aria-label="Toggle menu"
               >
                 {isMobileOpen ? <X size={20} /> : <Menu size={20} />}

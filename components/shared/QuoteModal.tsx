@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send, Phone, Mail, Package } from 'lucide-react';
 import { useForm } from 'react-hook-form';
+import { createInquiry } from '@/actions/inquiry.actions';
 
 interface QuoteModalProps {
   isOpen: boolean;
@@ -25,14 +26,34 @@ export default function QuoteModal({ isOpen, onClose, productName }: QuoteModalP
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>();
 
-  const onSubmit = (data: FormData) => {
-    console.log('Quote request:', data);
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      reset();
-      onClose();
-    }, 2500);
+  const onSubmit = async (data: FormData) => {
+    try {
+      const response = await createInquiry({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        company: data.company,
+        product: data.product,
+        quantity: data.quantity,
+        message: data.message || `Interested in ${data.product}`,
+        type: 'Product Quote'
+      });
+      
+      if (response.success) {
+        setIsSubmitted(true);
+        setTimeout(() => {
+          setIsSubmitted(false);
+          reset();
+          onClose();
+        }, 2500);
+      } else {
+        console.error('Error submitting quote:', response.error);
+        alert('Failed to submit request. Please try again or contact us directly.');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Failed to submit request. Please try again or contact us directly.');
+    }
   };
 
   return (
@@ -58,14 +79,14 @@ export default function QuoteModal({ isOpen, onClose, productName }: QuoteModalP
           >
             <div className="relative w-full max-w-lg bg-white rounded-3xl shadow-premium-xl overflow-hidden max-h-[90vh] overflow-y-auto">
               {/* Header */}
-              <div className="sticky top-0 bg-white/90 backdrop-blur-md border-b border-gray-100 px-6 py-4 flex items-center justify-between z-10">
+              <div className="sticky top-0 bg-white backdrop-blur-md border-b border-gray-100 px-6 py-4 flex items-center justify-between z-10">
                 <div>
                   <h3 className="text-lg font-bold font-display text-dark">Request a Quote</h3>
                   <p className="text-sm text-gray-400 mt-0.5">Get custom pricing for your requirements</p>
                 </div>
                 <button
                   onClick={onClose}
-                  className="w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors"
+                  className="w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200:bg-slate-700 flex items-center justify-center transition-colors text-slate-500"
                 >
                   <X size={18} />
                 </button>
@@ -92,7 +113,7 @@ export default function QuoteModal({ isOpen, onClose, productName }: QuoteModalP
                         <label className="block text-sm font-medium text-gray-700 mb-1.5">Full Name *</label>
                         <input
                           {...register('name', { required: true })}
-                          className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                          className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder:text-gray-400:text-gray-500"
                           placeholder="Your name"
                         />
                         {errors.name && <span className="text-xs text-red-500 mt-1">Required</span>}
@@ -101,7 +122,7 @@ export default function QuoteModal({ isOpen, onClose, productName }: QuoteModalP
                         <label className="block text-sm font-medium text-gray-700 mb-1.5">Company</label>
                         <input
                           {...register('company')}
-                          className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                          className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder:text-gray-400:text-gray-500"
                           placeholder="Company name"
                         />
                       </div>
@@ -114,7 +135,7 @@ export default function QuoteModal({ isOpen, onClose, productName }: QuoteModalP
                           <Mail size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
                           <input
                             {...register('email', { required: true, pattern: /^\S+@\S+$/i })}
-                            className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                            className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder:text-gray-400:text-gray-500"
                             placeholder="you@company.com"
                           />
                         </div>
@@ -126,7 +147,7 @@ export default function QuoteModal({ isOpen, onClose, productName }: QuoteModalP
                           <Phone size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
                           <input
                             {...register('phone', { required: true })}
-                            className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                            className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder:text-gray-400:text-gray-500"
                             placeholder="+91 98765 43210"
                           />
                         </div>
@@ -141,7 +162,7 @@ export default function QuoteModal({ isOpen, onClose, productName }: QuoteModalP
                         <input
                           {...register('product')}
                           defaultValue={productName || ''}
-                          className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                          className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder:text-gray-400:text-gray-500"
                           placeholder="e.g. HDPE Containers, Protein Jars"
                         />
                       </div>
@@ -151,7 +172,7 @@ export default function QuoteModal({ isOpen, onClose, productName }: QuoteModalP
                       <label className="block text-sm font-medium text-gray-700 mb-1.5">Estimated Quantity</label>
                       <input
                         {...register('quantity')}
-                        className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                        className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder:text-gray-400:text-gray-500"
                         placeholder="e.g. 5,000 pieces per month"
                       />
                     </div>
@@ -161,7 +182,7 @@ export default function QuoteModal({ isOpen, onClose, productName }: QuoteModalP
                       <textarea
                         {...register('message')}
                         rows={3}
-                        className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"
+                        className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none placeholder:text-gray-400:text-gray-500"
                         placeholder="Tell us about your packaging requirements..."
                       />
                     </div>

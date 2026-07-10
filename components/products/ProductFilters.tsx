@@ -62,7 +62,7 @@ export default function ProductFilters({
                 'w-full flex items-center gap-2 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 text-left h-full border',
                 activeCategory === cat.id
                   ? 'bg-primary/[0.08] text-primary border-primary/[0.15] shadow-sm'
-                  : 'text-gray-600 hover:bg-gray-50 hover:text-dark border-transparent lg:border-transparent bg-gray-50/50 lg:bg-transparent'
+                  : 'text-gray-600 hover:bg-gray-50 hover:text-dark border-transparent lg:border-transparent bg-gray-50 lg:bg-transparent'
               )}
             >
               <span className="text-base shrink-0 flex items-center justify-center">

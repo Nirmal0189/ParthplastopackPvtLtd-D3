@@ -26,8 +26,8 @@ export default function FeaturedProducts() {
           image: p.images?.[0] || '/images/products/placeholder.webp',
           badge: p.isFeatured ? 'Featured' : p.isTrending ? 'Trending' : '',
           material: p.specifications?.material || 'N/A',
-          capacity: p.specifications?.capacity || 'N/A',
-          color: p.specifications?.color || 'N/A',
+          overFlowVolume: p.specifications?.overFlowVolume || 'N/A',
+          capFitting: p.specifications?.capFitting || 'N/A',
         }));
 
         let featured = mappedProducts.filter(p => p.badge);
@@ -124,12 +124,12 @@ export default function FeaturedProducts() {
                         <span className="text-gray-600 truncate">{product.material.split('(')[0].trim()}</span>
                       </div>
                       <div className="flex items-start md:items-center text-[10px] md:text-xs">
-                        <span className="w-14 md:w-16 text-gray-400 font-medium shrink-0 pt-0.5 md:pt-0">Capacity</span>
-                        <span className="text-gray-600 line-clamp-2 md:truncate">{product.capacity}</span>
+                        <span className="w-14 md:w-16 text-gray-400 font-medium shrink-0 pt-0.5 md:pt-0">Volume</span>
+                        <span className="text-gray-600 line-clamp-2 md:truncate">{product.overFlowVolume}</span>
                       </div>
                       <div className="flex items-start md:items-center text-[10px] md:text-xs">
-                        <span className="w-14 md:w-16 text-gray-400 font-medium shrink-0 pt-0.5 md:pt-0">Color</span>
-                        <span className="text-gray-600 line-clamp-2 md:truncate">{product.color}</span>
+                        <span className="w-14 md:w-16 text-gray-400 font-medium shrink-0 pt-0.5 md:pt-0">Cap</span>
+                        <span className="text-gray-600 line-clamp-2 md:truncate">{product.capFitting}</span>
                       </div>
                     </div>
 

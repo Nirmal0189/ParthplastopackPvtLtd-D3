@@ -7,10 +7,9 @@ import { useRouter } from 'next/navigation';
 import { ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { imageZoom } from '@/lib/animations';
-import { Product } from '@/data/products';
 
 interface ProductCardProps {
-  product: Product;
+  product: any;
   index?: number;
 }
 
@@ -48,7 +47,7 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
           )}
 
           {/* Category label */}
-          <span className="absolute bottom-3 left-3 z-10 max-w-[calc(100%-24px)] truncate text-[9px] md:text-[10px] font-semibold text-gray-400 bg-white/80 backdrop-blur-sm px-2 py-0.5 rounded-md">
+          <span className="absolute bottom-3 left-3 z-10 max-w-[calc(100%-24px)] truncate text-[9px] md:text-[10px] font-semibold text-gray-400 bg-white backdrop-blur-sm px-2 py-0.5 rounded-md">
             {product.categoryLabel}
           </span>
 
@@ -68,12 +67,12 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
               <span className="text-gray-600 truncate">{product.material.split('(')[0].trim()}</span>
             </div>
             <div className="flex items-start md:items-center text-[10px] md:text-xs">
-              <span className="w-14 md:w-16 text-gray-400 font-medium shrink-0 pt-0.5 md:pt-0">Capacity</span>
-              <span className="text-gray-600 line-clamp-2 md:truncate">{product.capacity}</span>
+              <span className="w-14 md:w-16 text-gray-400 font-medium shrink-0 pt-0.5 md:pt-0">Volume</span>
+              <span className="text-gray-600 line-clamp-2 md:truncate">{product.overFlowVolume || product.capacity || 'N/A'}</span>
             </div>
             <div className="flex items-start md:items-center text-[10px] md:text-xs">
-              <span className="w-14 md:w-16 text-gray-400 font-medium shrink-0 pt-0.5 md:pt-0">Color</span>
-              <span className="text-gray-600 line-clamp-2 md:truncate">{product.color}</span>
+              <span className="w-14 md:w-16 text-gray-400 font-medium shrink-0 pt-0.5 md:pt-0">Cap</span>
+              <span className="text-gray-600 line-clamp-2 md:truncate">{product.capFitting || product.color || 'N/A'}</span>
             </div>
           </div>
 

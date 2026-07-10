@@ -17,8 +17,8 @@ export default function CTASection() {
       }} />
 
       {/* Decorative blobs */}
-      <div className="absolute top-0 left-1/4 w-72 h-72 bg-white/5 rounded-full blur-[60px]" />
-      <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-white/5 rounded-full blur-[60px]" />
+      <div className="absolute -top-20 left-1/4 w-96 h-96 bg-accent/30 rounded-full blur-[80px]" />
+      <div className="absolute -bottom-20 right-1/4 w-96 h-96 bg-blue-400/30 rounded-full blur-[80px]" />
 
       <div className="section-container relative z-10 text-center">
         <motion.div
@@ -27,7 +27,7 @@ export default function CTASection() {
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 text-white/90 text-xs font-semibold tracking-wider uppercase backdrop-blur-sm mb-6">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-white/20 text-white text-xs font-semibold tracking-wider uppercase backdrop-blur-sm mb-6 border border-white/30 shadow-sm">
             Ready to Scale Your Packaging?
           </span>
 
@@ -50,9 +50,9 @@ export default function CTASection() {
 
             <a
               href="tel:+919876543210"
-              className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/10 text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 backdrop-blur-sm transition-all duration-300 text-sm"
+              className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/10 text-white font-semibold rounded-xl border border-white/20 hover:bg-white hover:text-primary backdrop-blur-sm transition-all duration-300 text-sm group"
             >
-              <Phone size={16} />
+              <Phone size={16} className="group-hover:text-primary transition-colors" />
               Call Now
             </a>
 

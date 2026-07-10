@@ -33,7 +33,7 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/20 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-accent/20 rounded-full blur-[100px] pointer-events-none" />
@@ -42,40 +42,40 @@ export default function AdminLogin() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-w-md bg-white dark:bg-slate-900 rounded-3xl shadow-2xl overflow-hidden relative z-10 border border-gray-100 dark:border-slate-800"
+        className="w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden relative z-10 border border-gray-100"
       >
         <div className="p-8 md:p-10">
           <div className="text-center mb-10">
             <h1 className="font-display font-bold text-3xl tracking-tight text-primary mb-2">
               AdminPanel<span className="text-accent">.</span>
             </h1>
-            <p className="text-slate-500 dark:text-slate-400 text-sm">
+            <p className="text-slate-500 text-sm">
               Sign in to manage your website.
             </p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             {error && (
-              <div className="p-3 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 text-sm rounded-xl border border-red-100 dark:border-red-900/50 text-center">
+              <div className="p-3 bg-red-50 text-red-600 text-sm rounded-xl border border-red-100 text-center">
                 {error}
               </div>
             )}
 
             <div className="space-y-2">
-              <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">Email Address</label>
+              <label className="text-sm font-semibold text-slate-700">Email Address</label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:border-primary focus:ring-2 focus:ring-primary/20 dark:focus:ring-primary/20 outline-none transition-all text-slate-900 dark:text-white"
+                className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20:ring-primary/20 outline-none transition-all text-slate-900"
                 placeholder="admin@example.com"
               />
             </div>
 
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">Password</label>
+                <label className="text-sm font-semibold text-slate-700">Password</label>
                 <a href="#" className="text-xs text-primary font-medium hover:underline">Forgot password?</a>
               </div>
               <input
@@ -83,14 +83,14 @@ export default function AdminLogin() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:border-primary focus:ring-2 focus:ring-primary/20 dark:focus:ring-primary/20 outline-none transition-all text-slate-900 dark:text-white"
+                className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20:ring-primary/20 outline-none transition-all text-slate-900"
                 placeholder="••••••••"
               />
             </div>
 
             <div className="flex items-center gap-2">
               <input type="checkbox" id="remember" className="rounded border-gray-300 text-primary focus:ring-primary" />
-              <label htmlFor="remember" className="text-sm text-slate-600 dark:text-slate-400">Remember me for 30 days</label>
+              <label htmlFor="remember" className="text-sm text-slate-600">Remember me for 30 days</label>
             </div>
 
             <button

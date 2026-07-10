@@ -37,7 +37,7 @@ export default function SectionHeading({
         <span
           className={cn(
             'badge-primary mb-4 inline-block',
-            light && 'bg-white/10 text-white/90'
+            light && 'bg-white text-white/90'
           )}
         >
           {badge}

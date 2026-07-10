@@ -97,9 +97,9 @@ export default function SplashScreen() {
                   initial={{ width: "0%" }}
                   animate={{ width: `${progress}%` }}
                   transition={{ ease: "linear", duration: 0.1 }}
-                  className="h-full bg-gradient-to-r from-primary via-accent to-primary rounded-full relative" 
+                  className="h-full bg-gradient-to-r from-red-600 via-yellow-500 to-red-600 rounded-full relative overflow-hidden" 
                 >
-                  <div className="absolute inset-0 bg-white/20 animate-shimmer" style={{ backgroundSize: '200% 100%' }} />
+                  <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent)] animate-shimmer" style={{ backgroundSize: '200% 100%' }} />
                 </motion.div>
               </div>
 

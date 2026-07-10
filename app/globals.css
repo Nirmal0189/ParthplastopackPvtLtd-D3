@@ -18,7 +18,8 @@
   }
 
   body {
-    @apply bg-light text-dark antialiased overflow-x-hidden;
+    @apply antialiased overflow-x-hidden transition-colors duration-300;
+    @apply bg-light text-dark;
   }
 
   ::selection {

@@ -62,7 +62,7 @@ export default function ProductCategories() {
                     <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                     {/* Count badge */}
-                    <span className="absolute top-3 right-3 text-[10px] font-semibold text-gray-400 bg-white/80 backdrop-blur-sm px-2.5 py-1 rounded-full border border-gray-100">
+                    <span className="absolute top-3 right-3 text-[10px] font-semibold text-gray-400 bg-white backdrop-blur-sm px-2.5 py-1 rounded-full border border-gray-100">
                       {category.count}
                     </span>
                   </div>

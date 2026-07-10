@@ -2,7 +2,6 @@ import { ReactNode } from 'react';
 import { Metadata } from 'next';
 import AdminSidebar from '@/components/admin/AdminSidebar';
 import AdminHeader from '@/components/admin/AdminHeader';
-import { ThemeProvider } from '@/components/shared/ThemeProvider';
 
 export const metadata: Metadata = {
   title: 'Admin Dashboard | Parth Plasto Pack',
@@ -11,21 +10,19 @@ export const metadata: Metadata = {
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      <div className="flex min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-50 transition-colors">
-        {/* Sidebar */}
-        <AdminSidebar />
-        
-        {/* Main Content */}
-        <div className="flex-1 flex flex-col lg:pl-64 min-h-screen">
-          <AdminHeader />
-          <main className="flex-1 p-6 md:p-8 overflow-x-hidden">
-            <div className="max-w-7xl mx-auto w-full">
-              {children}
-            </div>
-          </main>
-        </div>
+    <div className="flex min-h-screen bg-slate-50 text-slate-900 transition-colors w-full max-w-[100vw] overflow-x-hidden relative">
+      {/* Sidebar */}
+      <AdminSidebar />
+      
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col lg:pl-64 min-h-screen w-full max-w-[100vw] lg:max-w-full overflow-x-hidden">
+        <AdminHeader />
+        <main className="flex-1 p-4 md:p-6 lg:p-8 overflow-x-hidden w-full box-border">
+          <div className="max-w-7xl mx-auto w-full box-border">
+            {children}
+          </div>
+        </main>
       </div>
-    </ThemeProvider>
+    </div>
   );
 }

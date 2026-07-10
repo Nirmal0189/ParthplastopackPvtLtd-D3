@@ -53,8 +53,8 @@ export default function ProductsPage() {
             image: p.images?.[0] || '/images/products/placeholder.webp', // fallback image
             badge: p.isFeatured ? 'Featured' : p.isTrending ? 'Trending' : '',
           material: p.specifications?.material || 'N/A',
-          capacity: p.specifications?.capacity || 'N/A',
-          color: p.specifications?.color || 'N/A',
+          overFlowVolume: p.specifications?.overFlowVolume || 'N/A',
+          capFitting: p.specifications?.capFitting || 'N/A',
         };
       });
       setDbProducts(mappedProducts);

@@ -77,9 +77,9 @@ export default function CategoryForm({ initialData }: { initialData?: any }) {
   };
 
   return (
-    <div className="max-w-2xl bg-white dark:bg-slate-900 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm overflow-hidden">
-      <div className="p-6 border-b border-gray-100 dark:border-slate-800 flex justify-between items-center">
-        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+    <div className="max-w-2xl bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+      <div className="p-6 border-b border-gray-100 flex justify-between items-center">
+        <h2 className="text-xl font-bold text-slate-900">
           {initialData ? 'Edit Category' : 'Create New Category'}
         </h2>
         <Link href="/admin/categories" className="text-sm text-slate-500 hover:text-slate-900 flex items-center gap-1">
@@ -96,21 +96,21 @@ export default function CategoryForm({ initialData }: { initialData?: any }) {
 
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Title *</label>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Title *</label>
             <input 
               type="text" 
               required
-              className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"
+              className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-none"
               value={formData.title}
               onChange={(e) => setFormData({...formData, title: e.target.value})}
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">URL Slug</label>
+            <label className="block text-sm font-medium text-slate-700 mb-1">URL Slug</label>
             <input 
               type="text" 
-              className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"
+              className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-none"
               value={formData.slug}
               placeholder="Leave blank to auto-generate"
               onChange={(e) => setFormData({...formData, slug: e.target.value})}
@@ -118,7 +118,7 @@ export default function CategoryForm({ initialData }: { initialData?: any }) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Category Image / Icon</label>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Category Image / Icon</label>
             <div className="flex items-start gap-4">
               {formData.image && (
                 <div className="relative w-24 h-24 rounded-xl border border-gray-200 bg-gray-50 flex items-center justify-center overflow-hidden">
@@ -134,7 +134,7 @@ export default function CategoryForm({ initialData }: { initialData?: any }) {
               )}
               
               {!formData.image && (
-                <label className="w-24 h-24 rounded-xl border-2 border-dashed border-gray-300 dark:border-slate-700 flex flex-col items-center justify-center cursor-pointer hover:border-blue-500 hover:text-blue-500 transition text-gray-500">
+                <label className="w-24 h-24 rounded-xl border-2 border-dashed border-gray-300 flex flex-col items-center justify-center cursor-pointer hover:border-blue-500 hover:text-blue-500 transition text-gray-500">
                   {uploading ? (
                     <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500"></div>
                   ) : (
@@ -150,10 +150,10 @@ export default function CategoryForm({ initialData }: { initialData?: any }) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Description</label>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Description</label>
             <textarea 
               rows={4}
-              className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"
+              className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-none"
               value={formData.description}
               onChange={(e) => setFormData({...formData, description: e.target.value})}
             />
@@ -167,7 +167,7 @@ export default function CategoryForm({ initialData }: { initialData?: any }) {
               onChange={(e) => setFormData({...formData, isActive: e.target.checked})}
               className="w-4 h-4 text-blue-600 rounded"
             />
-            <label htmlFor="isActive" className="text-sm font-medium text-slate-700 dark:text-slate-300">Is Active</label>
+            <label htmlFor="isActive" className="text-sm font-medium text-slate-700">Is Active</label>
           </div>
         </div>
 

@@ -1,9 +1,11 @@
 {
-  "/page": "app/page.js",
-  "/products/page": "app/products/page.js",
   "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
+  "/page": "app/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/icon.png/route": "app/icon.png/route.js",
   "/_not-found/page": "app/_not-found/page.js",
-  "/products/[slug]/page": "app/products/[slug]/page.js",
-  "/admin/products/[id]/page": "app/admin/products/[id]/page.js",
-  "/admin/filters/page": "app/admin/filters/page.js"
+  "/products/page": "app/products/page.js",
+  "/admin/categories/[id]/page": "app/admin/categories/[id]/page.js",
+  "/admin/categories/page": "app/admin/categories/page.js",
+  "/admin/inquiries/page": "app/admin/inquiries/page.js"
 }

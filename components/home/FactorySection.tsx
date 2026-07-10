@@ -54,7 +54,7 @@ export default function FactorySection() {
 
                 {/* Content on hover */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center mb-1 sm:mb-3">
+                  <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-white backdrop-blur-md flex items-center justify-center mb-1 sm:mb-3">
                     <ZoomIn size={16} className="text-white sm:hidden" />
                     <ZoomIn size={20} className="text-white hidden sm:block" />
                   </div>
@@ -78,7 +78,7 @@ export default function FactorySection() {
             onClick={() => setLightboxIndex(null)}
           >
             <button
-              className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
+              className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white hover:bg-white flex items-center justify-center text-white transition-colors"
               onClick={() => setLightboxIndex(null)}
             >
               <X size={20} />

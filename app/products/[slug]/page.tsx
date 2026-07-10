@@ -44,11 +44,16 @@ export default function ProductDetailPage() {
             gallery: dbProduct.images?.length ? dbProduct.images : ['/images/products/placeholder.webp'],
             badge: dbProduct.isFeatured ? 'Featured' : dbProduct.isTrending ? 'Trending' : '',
             description: dbProduct.description || dbProduct.shortDescription || 'No description available.',
-            material: dbProduct.specifications?.material || 'N/A',
-            capacity: dbProduct.specifications?.capacity || 'N/A',
-            color: dbProduct.specifications?.color || 'N/A',
-            dimensions: dbProduct.specifications?.dimensions || '',
-            weight: dbProduct.specifications?.weight || '',
+            overFlowVolume: dbProduct.specifications?.overFlowVolume || '',
+            heightOfContainer: dbProduct.specifications?.heightOfContainer || '',
+            neckSize: dbProduct.specifications?.neckSize || '',
+            maximumDiaOfContainer: dbProduct.specifications?.maximumDiaOfContainer || '',
+            wallThickness: dbProduct.specifications?.wallThickness || '',
+            capFitting: dbProduct.specifications?.capFitting || '',
+            labelType: dbProduct.specifications?.labelType || '',
+            weightOfContainer: dbProduct.specifications?.weightOfContainer || '',
+            powderVolume: dbProduct.specifications?.powderVolume || '',
+            material: dbProduct.specifications?.material || '',
             moq: dbProduct.moq || 1000,
             features: dbProduct.features || [],
             applications: dbProduct.applications || [],
@@ -69,8 +74,8 @@ export default function ProductDetailPage() {
               image: p.images?.[0] || '/images/products/placeholder.webp',
               badge: p.isFeatured ? 'Featured' : p.isTrending ? 'Trending' : '',
               material: p.specifications?.material || 'N/A',
-              capacity: p.specifications?.capacity || 'N/A',
-              color: p.specifications?.color || 'N/A',
+              overFlowVolume: p.specifications?.overFlowVolume || 'N/A',
+              capFitting: p.specifications?.capFitting || 'N/A',
             }));
           setRelatedProducts(related);
         }
@@ -244,42 +249,93 @@ export default function ProductDetailPage() {
               <div className="mt-8 space-y-3">
                 <h3 className="text-sm font-bold text-dark uppercase tracking-wider">Specifications</h3>
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="flex items-center gap-3 p-3 rounded-xl bg-white border border-gray-100">
-                    <Layers size={16} className="text-primary shrink-0" />
-                    <div>
-                      <span className="text-[10px] text-gray-400 block">Material</span>
-                      <span className="text-xs font-medium text-dark">{product.material}</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3 p-3 rounded-xl bg-white border border-gray-100">
-                    <Package size={16} className="text-primary shrink-0" />
-                    <div>
-                      <span className="text-[10px] text-gray-400 block">Capacity</span>
-                      <span className="text-xs font-medium text-dark">{product.capacity}</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3 p-3 rounded-xl bg-white border border-gray-100">
-                    <Palette size={16} className="text-primary shrink-0" />
-                    <div>
-                      <span className="text-[10px] text-gray-400 block">Colors</span>
-                      <span className="text-xs font-medium text-dark">{product.color}</span>
-                    </div>
-                  </div>
-                  {product.dimensions && (
+                  {product.material && (
                     <div className="flex items-center gap-3 p-3 rounded-xl bg-white border border-gray-100">
-                      <Ruler size={16} className="text-primary shrink-0" />
+                      <Layers size={16} className="text-primary shrink-0" />
                       <div>
-                        <span className="text-[10px] text-gray-400 block">Dimensions</span>
-                        <span className="text-xs font-medium text-dark">{product.dimensions}</span>
+                        <span className="text-[10px] text-gray-400 block">Material</span>
+                        <span className="text-xs font-medium text-dark">{product.material}</span>
                       </div>
                     </div>
                   )}
-                  {product.weight && (
+                  {product.overFlowVolume && (
+                    <div className="flex items-center gap-3 p-3 rounded-xl bg-white border border-gray-100">
+                      <Package size={16} className="text-primary shrink-0" />
+                      <div>
+                        <span className="text-[10px] text-gray-400 block">Over Flow Volume</span>
+                        <span className="text-xs font-medium text-dark">{product.overFlowVolume}</span>
+                      </div>
+                    </div>
+                  )}
+                  {product.heightOfContainer && (
+                    <div className="flex items-center gap-3 p-3 rounded-xl bg-white border border-gray-100">
+                      <Ruler size={16} className="text-primary shrink-0" />
+                      <div>
+                        <span className="text-[10px] text-gray-400 block">Height</span>
+                        <span className="text-xs font-medium text-dark">{product.heightOfContainer}</span>
+                      </div>
+                    </div>
+                  )}
+                  {product.neckSize && (
+                    <div className="flex items-center gap-3 p-3 rounded-xl bg-white border border-gray-100">
+                      <Ruler size={16} className="text-primary shrink-0" />
+                      <div>
+                        <span className="text-[10px] text-gray-400 block">Neck Size</span>
+                        <span className="text-xs font-medium text-dark">{product.neckSize}</span>
+                      </div>
+                    </div>
+                  )}
+                  {product.maximumDiaOfContainer && (
+                    <div className="flex items-center gap-3 p-3 rounded-xl bg-white border border-gray-100">
+                      <Ruler size={16} className="text-primary shrink-0" />
+                      <div>
+                        <span className="text-[10px] text-gray-400 block">Max Diameter</span>
+                        <span className="text-xs font-medium text-dark">{product.maximumDiaOfContainer}</span>
+                      </div>
+                    </div>
+                  )}
+                  {product.wallThickness && (
+                    <div className="flex items-center gap-3 p-3 rounded-xl bg-white border border-gray-100">
+                      <Layers size={16} className="text-primary shrink-0" />
+                      <div>
+                        <span className="text-[10px] text-gray-400 block">Wall Thickness</span>
+                        <span className="text-xs font-medium text-dark">{product.wallThickness}</span>
+                      </div>
+                    </div>
+                  )}
+                  {product.capFitting && (
+                    <div className="flex items-center gap-3 p-3 rounded-xl bg-white border border-gray-100">
+                      <Palette size={16} className="text-primary shrink-0" />
+                      <div>
+                        <span className="text-[10px] text-gray-400 block">Cap Fitting</span>
+                        <span className="text-xs font-medium text-dark">{product.capFitting}</span>
+                      </div>
+                    </div>
+                  )}
+                  {product.labelType && (
+                    <div className="flex items-center gap-3 p-3 rounded-xl bg-white border border-gray-100">
+                      <Palette size={16} className="text-primary shrink-0" />
+                      <div>
+                        <span className="text-[10px] text-gray-400 block">Label Type</span>
+                        <span className="text-xs font-medium text-dark">{product.labelType}</span>
+                      </div>
+                    </div>
+                  )}
+                  {product.weightOfContainer && (
                     <div className="flex items-center gap-3 p-3 rounded-xl bg-white border border-gray-100">
                       <Weight size={16} className="text-primary shrink-0" />
                       <div>
                         <span className="text-[10px] text-gray-400 block">Weight</span>
-                        <span className="text-xs font-medium text-dark">{product.weight}</span>
+                        <span className="text-xs font-medium text-dark">{product.weightOfContainer}</span>
+                      </div>
+                    </div>
+                  )}
+                  {product.powderVolume && (
+                    <div className="flex items-center gap-3 p-3 rounded-xl bg-white border border-gray-100">
+                      <Package size={16} className="text-primary shrink-0" />
+                      <div>
+                        <span className="text-[10px] text-gray-400 block">Powder Volume</span>
+                        <span className="text-xs font-medium text-dark">{product.powderVolume}</span>
                       </div>
                     </div>
                   )}

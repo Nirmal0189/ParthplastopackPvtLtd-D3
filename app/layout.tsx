@@ -107,6 +107,7 @@ const jsonLd = {
   sameAs: [],
 };
 
+
 export default function RootLayout({
   children,
 }: {
@@ -120,7 +121,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-screen bg-light text-dark font-sans antialiased overflow-x-hidden">
+      <body className="min-h-screen bg-light text-dark font-sans antialiased overflow-x-hidden transition-colors duration-300">
         <AuthProvider>
           {/* Subtle noise texture overlay */}
           <div className="noise-overlay" aria-hidden="true" />

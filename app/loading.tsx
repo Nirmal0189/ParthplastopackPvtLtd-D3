@@ -53,7 +53,7 @@ export default function Loading() {
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               className="h-full bg-gradient-to-r from-primary via-accent to-primary rounded-full relative"
             >
-              <div className="absolute inset-0 bg-white/20 animate-shimmer" style={{ backgroundSize: '200% 100%' }} />
+              <div className="absolute inset-0 bg-white animate-shimmer" style={{ backgroundSize: '200% 100%' }} />
             </motion.div>
           </div>
           <p className="text-[10px] text-gray-400 font-medium tracking-[0.2em] uppercase animate-pulse">

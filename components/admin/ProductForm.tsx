@@ -29,11 +29,16 @@ export default function ProductForm({ initialData }: { initialData?: any }) {
     moq: initialData?.moq || 1000,
     images: initialData?.images || [],
     specifications: {
+      overFlowVolume: initialData?.specifications?.overFlowVolume || '',
+      heightOfContainer: initialData?.specifications?.heightOfContainer || '',
+      neckSize: initialData?.specifications?.neckSize || '',
+      maximumDiaOfContainer: initialData?.specifications?.maximumDiaOfContainer || '',
+      wallThickness: initialData?.specifications?.wallThickness || '',
+      capFitting: initialData?.specifications?.capFitting || '',
+      labelType: initialData?.specifications?.labelType || '',
+      weightOfContainer: initialData?.specifications?.weightOfContainer || '',
+      powderVolume: initialData?.specifications?.powderVolume || '',
       material: initialData?.specifications?.material || '',
-      capacity: initialData?.specifications?.capacity || '',
-      color: initialData?.specifications?.color || '',
-      dimensions: initialData?.specifications?.dimensions || '',
-      weight: initialData?.specifications?.weight || '',
     }
   });
 
@@ -128,14 +133,14 @@ export default function ProductForm({ initialData }: { initialData?: any }) {
 
   // Helper to render dynamic input/select for specifications
   const renderSpecInput = (field: string, label: string, placeholder: string) => {
-    const attr = attributes.find(a => a.name.toLowerCase() === field.toLowerCase());
+    const attr = attributes.find(a => a.name.toLowerCase() === label.toLowerCase());
     
     if (attr && attr.options && attr.options.length > 0) {
       return (
         <div>
-          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">{label}</label>
+          <label className="block text-sm font-medium text-slate-700 mb-1">{label}</label>
           <select 
-            className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"
+            className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-none"
             value={(formData.specifications as any)[field] || ''}
             onChange={(e) => handleSpecChange(field, e.target.value)}
           >
@@ -150,10 +155,10 @@ export default function ProductForm({ initialData }: { initialData?: any }) {
 
     return (
       <div>
-        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">{label}</label>
+        <label className="block text-sm font-medium text-slate-700 mb-1">{label}</label>
         <input 
           type="text" placeholder={placeholder}
-          className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"
+          className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-none"
           value={(formData.specifications as any)[field] || ''}
           onChange={(e) => handleSpecChange(field, e.target.value)}
         />
@@ -162,9 +167,9 @@ export default function ProductForm({ initialData }: { initialData?: any }) {
   };
 
   return (
-    <div className="max-w-4xl bg-white dark:bg-slate-900 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm overflow-hidden mb-10">
-      <div className="p-6 border-b border-gray-100 dark:border-slate-800 flex justify-between items-center">
-        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+    <div className="max-w-4xl bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden mb-10">
+      <div className="p-6 border-b border-gray-100 flex justify-between items-center">
+        <h2 className="text-xl font-bold text-slate-900">
           {initialData ? 'Edit Product' : 'Create New Product'}
         </h2>
         <Link href="/admin/products" className="text-sm text-slate-500 hover:text-slate-900 flex items-center gap-1">
@@ -181,43 +186,43 @@ export default function ProductForm({ initialData }: { initialData?: any }) {
 
         {/* Basic Info */}
         <div>
-          <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Basic Information</h3>
+          <h3 className="text-lg font-semibold text-slate-900 mb-4">Basic Information</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Product Name *</label>
+              <label className="block text-sm font-medium text-slate-700 mb-1">Product Name *</label>
               <input 
                 type="text" 
                 required
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-none"
                 value={formData.name}
                 onChange={(e) => setFormData({...formData, name: e.target.value})}
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">SKU *</label>
+              <label className="block text-sm font-medium text-slate-700 mb-1">SKU *</label>
               <input 
                 type="text" 
                 required
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-none"
                 value={formData.sku}
                 onChange={(e) => setFormData({...formData, sku: e.target.value})}
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">URL Slug</label>
+              <label className="block text-sm font-medium text-slate-700 mb-1">URL Slug</label>
               <input 
                 type="text" 
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-none"
                 value={formData.slug}
                 placeholder="Leave blank to auto-generate"
                 onChange={(e) => setFormData({...formData, slug: e.target.value})}
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Category *</label>
+              <label className="block text-sm font-medium text-slate-700 mb-1">Category *</label>
               <select 
                 required
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-none"
                 value={formData.category}
                 onChange={(e) => setFormData({...formData, category: e.target.value})}
               >
@@ -228,9 +233,9 @@ export default function ProductForm({ initialData }: { initialData?: any }) {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Status</label>
+              <label className="block text-sm font-medium text-slate-700 mb-1">Status</label>
               <select 
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-none"
                 value={formData.status}
                 onChange={(e) => setFormData({...formData, status: e.target.value})}
               >
@@ -240,10 +245,10 @@ export default function ProductForm({ initialData }: { initialData?: any }) {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">MOQ</label>
+              <label className="block text-sm font-medium text-slate-700 mb-1">MOQ</label>
               <input 
                 type="number" 
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-none"
                 value={formData.moq}
                 onChange={(e) => setFormData({...formData, moq: Number(e.target.value)})}
               />
@@ -252,8 +257,8 @@ export default function ProductForm({ initialData }: { initialData?: any }) {
         </div>
 
         {/* Product Images */}
-        <div className="pt-4 border-t border-gray-100 dark:border-slate-800">
-          <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Product Images</h3>
+        <div className="pt-4 border-t border-gray-100">
+          <h3 className="text-lg font-semibold text-slate-900 mb-4">Product Images</h3>
           
           <div className="flex flex-wrap gap-4 mb-4">
             {formData.images.map((img: string, i: number) => (
@@ -269,7 +274,7 @@ export default function ProductForm({ initialData }: { initialData?: any }) {
               </div>
             ))}
             
-            <label className="w-24 h-24 rounded-xl border-2 border-dashed border-gray-300 dark:border-slate-700 flex flex-col items-center justify-center cursor-pointer hover:border-blue-500 hover:text-blue-500 transition text-gray-500">
+            <label className="w-24 h-24 rounded-xl border-2 border-dashed border-gray-300 flex flex-col items-center justify-center cursor-pointer hover:border-blue-500 hover:text-blue-500 transition text-gray-500">
               {uploading ? (
                 <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500"></div>
               ) : (
@@ -285,35 +290,40 @@ export default function ProductForm({ initialData }: { initialData?: any }) {
         </div>
 
         {/* Specifications */}
-        <div className="pt-4 border-t border-gray-100 dark:border-slate-800">
-          <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Specifications</h3>
+        <div className="pt-4 border-t border-gray-100">
+          <h3 className="text-lg font-semibold text-slate-900 mb-4">Specifications</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {renderSpecInput('material', 'Material', 'e.g. HDPE, PET')}
-            {renderSpecInput('capacity', 'Capacity', 'e.g. 500ml, 1L')}
-            {renderSpecInput('color', 'Colors', 'e.g. White, Amber, Custom')}
-            {renderSpecInput('dimensions', 'Dimensions', 'e.g. 10cm x 5cm')}
-            {renderSpecInput('weight', 'Weight', 'e.g. 50g')}
+            {renderSpecInput('overFlowVolume', 'Over Flow Volume', 'e.g. 560 +/- 20 ML')}
+            {renderSpecInput('heightOfContainer', 'Height Of Container', 'e.g. 114 +/- 1 MM')}
+            {renderSpecInput('neckSize', 'Neck Size', 'e.g. 84 +/- 0.5 MM')}
+            {renderSpecInput('maximumDiaOfContainer', 'Maximum Dia Of Container', 'e.g. 82 +/- 0.5 MM')}
+            {renderSpecInput('wallThickness', 'Wall Thickness', 'e.g. 0.8 +/- 0.1 MM')}
+            {renderSpecInput('capFitting', 'Cap Fitting', 'e.g. Push fitting')}
+            {renderSpecInput('labelType', 'Label Type', 'e.g. Label & IML')}
+            {renderSpecInput('weightOfContainer', 'Weight Of Container (With Cap)', 'e.g. 38 +/- 2 GM')}
+            {renderSpecInput('powderVolume', 'Powder Volume (Approx)', 'e.g. 200 To 250 GM')}
+            {renderSpecInput('material', 'Material', 'e.g. Food-grade PP plastic')}
           </div>
         </div>
 
         {/* Descriptions */}
-        <div className="pt-4 border-t border-gray-100 dark:border-slate-800">
-          <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Descriptions</h3>
+        <div className="pt-4 border-t border-gray-100">
+          <h3 className="text-lg font-semibold text-slate-900 mb-4">Descriptions</h3>
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Short Description (Optional)</label>
+              <label className="block text-sm font-medium text-slate-700 mb-1">Short Description (Optional)</label>
               <textarea 
                 rows={2}
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-none"
                 value={formData.shortDescription}
                 onChange={(e) => setFormData({...formData, shortDescription: e.target.value})}
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Full Description</label>
+              <label className="block text-sm font-medium text-slate-700 mb-1">Full Description</label>
               <textarea 
                 rows={5}
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-none"
                 value={formData.description}
                 onChange={(e) => setFormData({...formData, description: e.target.value})}
               />
@@ -321,7 +331,7 @@ export default function ProductForm({ initialData }: { initialData?: any }) {
           </div>
         </div>
 
-        <div className="pt-4 border-t border-gray-100 dark:border-slate-800 flex justify-end">
+        <div className="pt-4 border-t border-gray-100 flex justify-end">
           <button 
             type="submit" 
             disabled={loading}

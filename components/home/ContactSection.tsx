@@ -6,6 +6,7 @@ import { MapPin, Phone, Mail, Clock, Send, MessageCircle } from 'lucide-react';
 import SectionHeading from '@/components/shared/SectionHeading';
 import ScrollReveal from '@/components/shared/ScrollReveal';
 import { useState } from 'react';
+import { createInquiry } from '@/actions/inquiry.actions';
 
 interface ContactForm {
   name: string;
@@ -31,10 +32,29 @@ export default function ContactSection() {
   const [submitted, setSubmitted] = useState(false);
   const { register, handleSubmit, reset, formState: { errors } } = useForm<ContactForm>();
 
-  const onSubmit = (data: ContactForm) => {
-    console.log('Contact form:', data);
-    setSubmitted(true);
-    setTimeout(() => { setSubmitted(false); reset(); }, 3000);
+  const onSubmit = async (data: ContactForm) => {
+    try {
+      const response = await createInquiry({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        company: data.company,
+        subject: data.subject,
+        message: data.message,
+        type: 'General Contact'
+      });
+      
+      if (response.success) {
+        setSubmitted(true);
+        setTimeout(() => { setSubmitted(false); reset(); }, 3000);
+      } else {
+        console.error('Error submitting inquiry:', response.error);
+        alert('Failed to send message. Please try again or contact us via phone.');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Failed to send message. Please try again or contact us via phone.');
+    }
   };
 
   return (
@@ -73,7 +93,7 @@ export default function ContactSection() {
                 href="https://wa.me/919876543210?text=Hello%20Parth%20Plasto%20Pack"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 px-5 py-3.5 bg-green-50 hover:bg-green-100 rounded-xl border border-green-200 transition-all group"
+                className="flex items-center gap-3 px-5 py-3.5 bg-green-50 hover:bg-green-100:bg-green-900/40 rounded-xl border border-green-200 transition-all group"
               >
                 <MessageCircle size={20} className="text-green-600" />
                 <div>
@@ -82,7 +102,6 @@ export default function ContactSection() {
                 </div>
               </a>
 
-              {/* Map */}
               <div className="rounded-2xl overflow-hidden border border-gray-100 shadow-sm mt-4">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.5!2d72.5!3d23.05!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDAzJzAwLjAiTiA3MsKwMzAnMDAuMCJF!5e0!3m2!1sen!2sin!4v1"
@@ -118,7 +137,7 @@ export default function ContactSection() {
                       <label className="block text-sm font-medium text-gray-700 mb-1.5">Full Name *</label>
                       <input
                         {...register('name', { required: true })}
-                        className="w-full px-4 py-3 rounded-xl bg-white border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                        className="w-full px-4 py-3 rounded-xl bg-white border border-gray-200 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder:text-gray-400:text-gray-500"
                         placeholder="Your name"
                       />
                       {errors.name && <span className="text-xs text-red-500 mt-1">Required</span>}
@@ -127,7 +146,7 @@ export default function ContactSection() {
                       <label className="block text-sm font-medium text-gray-700 mb-1.5">Email *</label>
                       <input
                         {...register('email', { required: true, pattern: /^\S+@\S+$/i })}
-                        className="w-full px-4 py-3 rounded-xl bg-white border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                        className="w-full px-4 py-3 rounded-xl bg-white border border-gray-200 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder:text-gray-400:text-gray-500"
                         placeholder="you@company.com"
                       />
                       {errors.email && <span className="text-xs text-red-500 mt-1">Valid email required</span>}
@@ -139,7 +158,7 @@ export default function ContactSection() {
                       <label className="block text-sm font-medium text-gray-700 mb-1.5">Phone *</label>
                       <input
                         {...register('phone', { required: true })}
-                        className="w-full px-4 py-3 rounded-xl bg-white border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                        className="w-full px-4 py-3 rounded-xl bg-white border border-gray-200 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder:text-gray-400:text-gray-500"
                         placeholder="+91 98765 43210"
                       />
                       {errors.phone && <span className="text-xs text-red-500 mt-1">Required</span>}
@@ -148,7 +167,7 @@ export default function ContactSection() {
                       <label className="block text-sm font-medium text-gray-700 mb-1.5">Company</label>
                       <input
                         {...register('company')}
-                        className="w-full px-4 py-3 rounded-xl bg-white border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                        className="w-full px-4 py-3 rounded-xl bg-white border border-gray-200 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder:text-gray-400:text-gray-500"
                         placeholder="Company name"
                       />
                     </div>
@@ -158,7 +177,7 @@ export default function ContactSection() {
                     <label className="block text-sm font-medium text-gray-700 mb-1.5">Subject</label>
                     <input
                       {...register('subject')}
-                      className="w-full px-4 py-3 rounded-xl bg-white border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                      className="w-full px-4 py-3 rounded-xl bg-white border border-gray-200 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder:text-gray-400:text-gray-500"
                       placeholder="How can we help?"
                     />
                   </div>
@@ -168,7 +187,7 @@ export default function ContactSection() {
                     <textarea
                       {...register('message', { required: true })}
                       rows={4}
-                      className="w-full px-4 py-3 rounded-xl bg-white border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"
+                      className="w-full px-4 py-3 rounded-xl bg-white border border-gray-200 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none placeholder:text-gray-400:text-gray-500"
                       placeholder="Tell us about your packaging requirements..."
                     />
                     {errors.message && <span className="text-xs text-red-500 mt-1">Required</span>}

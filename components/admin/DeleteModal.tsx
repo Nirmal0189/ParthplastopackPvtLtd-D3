@@ -38,29 +38,29 @@ export default function DeleteModal({
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-white dark:bg-slate-900 w-full max-w-md rounded-2xl shadow-xl border border-gray-100 dark:border-slate-800 overflow-hidden"
+              className="bg-white w-full max-w-md rounded-2xl shadow-xl border border-gray-100 overflow-hidden"
             >
               <div className="p-6">
                 <div className="flex items-start justify-between mb-4">
-                  <div className="w-12 h-12 rounded-full bg-red-50 dark:bg-red-900/20 flex items-center justify-center shrink-0">
-                    <AlertTriangle className="text-red-600 dark:text-red-500" size={24} />
+                  <div className="w-12 h-12 rounded-full bg-red-50 flex items-center justify-center shrink-0">
+                    <AlertTriangle className="text-red-600" size={24} />
                   </div>
                   <button 
                     onClick={onClose}
-                    className="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 rounded-lg transition-colors"
+                    className="p-2 text-slate-400 hover:text-slate-600:text-slate-300 rounded-lg transition-colors"
                   >
                     <X size={20} />
                   </button>
                 </div>
                 
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
+                <h3 className="text-xl font-bold text-slate-900 mb-2">
                   {title}
                 </h3>
                 
-                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                <p className="text-slate-500 text-sm leading-relaxed mb-6">
                   {description}
                   {itemName && (
-                    <span className="block mt-2 font-semibold text-slate-700 dark:text-slate-300">
+                    <span className="block mt-2 font-semibold text-slate-700">
                       Target: "{itemName}"
                     </span>
                   )}
@@ -69,7 +69,7 @@ export default function DeleteModal({
                 <div className="flex gap-3 justify-end">
                   <button
                     onClick={onClose}
-                    className="px-5 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors border border-gray-200 dark:border-slate-700"
+                    className="px-5 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50:bg-slate-800 transition-colors border border-gray-200"
                   >
                     Cancel
                   </button>
