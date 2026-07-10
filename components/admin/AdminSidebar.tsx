@@ -2,11 +2,11 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useSession, signOut } from 'next-auth/react';
 import {
   LayoutDashboard,
   Package,
   Tags,
-  Filter,
   ShoppingCart,
   MessageSquare,
   Users,
@@ -23,27 +23,29 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAdminStore } from '@/lib/adminStore';
-// import { signOut } from 'next-auth/react'; // Will implement once next-auth is fully setup
 
 const menuItems = [
-  { title: 'Dashboard', icon: LayoutDashboard, href: '/admin' },
-  { title: 'Products', icon: Package, href: '/admin/products' },
-  { title: 'Categories', icon: Tags, href: '/admin/categories' },
-  { title: 'Inquiries', icon: MessageSquare, href: '/admin/inquiries' },
-  { title: 'Customers', icon: Users, href: '/admin/customers' },
-  { title: 'Gallery', icon: ImageIcon, href: '/admin/gallery' },
-  { title: 'Blog', icon: FileText, href: '/admin/blog' },
-  { title: 'Downloads', icon: Download, href: '/admin/downloads' },
-  { title: 'Careers', icon: Briefcase, href: '/admin/careers' },
-  { title: 'Analytics', icon: BarChart, href: '/admin/analytics' },
-  { title: 'Users', icon: UserCog, href: '/admin/users' },
-  { title: 'CMS', icon: Settings2, href: '/admin/cms' },
-  { title: 'Settings', icon: Settings, href: '/admin/settings' },
+  { title: 'Dashboard', icon: LayoutDashboard, href: '/admin', roles: ['SUPER_ADMIN', 'ADMIN', 'SALES', 'MARKETING', 'EMPLOYEE'] },
+  { title: 'Products', icon: Package, href: '/admin/products', roles: ['SUPER_ADMIN', 'ADMIN', 'SALES', 'MARKETING', 'EMPLOYEE'] },
+  { title: 'Categories', icon: Tags, href: '/admin/categories', roles: ['SUPER_ADMIN', 'ADMIN', 'SALES', 'MARKETING', 'EMPLOYEE'] },
+  { title: 'Inquiries', icon: MessageSquare, href: '/admin/inquiries', roles: ['SUPER_ADMIN', 'ADMIN', 'SALES', 'MARKETING', 'EMPLOYEE'] },
+  { title: 'Customers', icon: Users, href: '/admin/customers', roles: ['SUPER_ADMIN', 'ADMIN', 'SALES'] },
+  { title: 'Gallery', icon: ImageIcon, href: '/admin/gallery', roles: ['SUPER_ADMIN', 'ADMIN', 'MARKETING'] },
+  { title: 'Blog', icon: FileText, href: '/admin/blog', roles: ['SUPER_ADMIN', 'ADMIN', 'MARKETING'] },
+  { title: 'Downloads', icon: Download, href: '/admin/downloads', roles: ['SUPER_ADMIN', 'ADMIN', 'MARKETING'] },
+  { title: 'Careers', icon: Briefcase, href: '/admin/careers', roles: ['SUPER_ADMIN', 'ADMIN'] },
+  { title: 'Analytics', icon: BarChart, href: '/admin/analytics', roles: ['SUPER_ADMIN', 'ADMIN', 'SALES', 'MARKETING'] },
+  { title: 'Users', icon: UserCog, href: '/admin/users', roles: ['SUPER_ADMIN', 'ADMIN'] },
+  { title: 'CMS', icon: Settings2, href: '/admin/cms', roles: ['SUPER_ADMIN', 'ADMIN'] },
+  { title: 'Settings', icon: Settings, href: '/admin/settings', roles: ['SUPER_ADMIN', 'ADMIN'] },
 ];
 
 export default function AdminSidebar() {
   const pathname = usePathname();
   const { isSidebarOpen, setSidebarOpen } = useAdminStore();
+  const { data: session } = useSession();
+  
+  const userRole = (session?.user as any)?.role || 'EMPLOYEE';
 
   return (
     <>
@@ -69,7 +71,9 @@ export default function AdminSidebar() {
         </div>
 
       <div className="flex-1 overflow-y-auto py-4 px-3 space-y-1 custom-scrollbar">
-        {menuItems.map((item) => {
+        {menuItems
+          .filter(item => item.roles.includes(userRole))
+          .map((item) => {
           const isActive = pathname === item.href || (pathname.startsWith(item.href) && item.href !== '/admin');
           const Icon = item.icon;
 
@@ -94,7 +98,7 @@ export default function AdminSidebar() {
 
       <div className="p-4 border-t border-gray-100">
         <button
-          onClick={() => {}} // signOut({ callbackUrl: '/admin/login' })
+          onClick={() => signOut({ callbackUrl: '/admin/login' })}
           className="flex items-center gap-3 px-3 py-2 w-full rounded-lg text-sm font-medium text-red-600 hover:bg-red-50:bg-red-900/10 transition-colors"
         >
           <LogOut size={18} />

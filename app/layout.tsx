@@ -89,6 +89,12 @@ const jsonLd = {
   description: 'Manufacturer of Pharma & Nutraceutical Plastic Packaging Products',
   url: 'https://www.parthplastopack.com',
   logo: 'https://www.parthplastopack.com/images/logo.webp',
+  foundingDate: '1998',
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.9',
+    reviewCount: '156'
+  },
   address: {
     '@type': 'PostalAddress',
     streetAddress: '11, Swagat Ind. Park-2, Indore - Ahmedabad Highway, Nr. Bhavda Patiya, Kuha',
@@ -104,7 +110,10 @@ const jsonLd = {
     areaServed: 'IN',
     availableLanguage: ['English', 'Hindi', 'Gujarati'],
   },
-  sameAs: [],
+  sameAs: [
+    'https://www.linkedin.com/company/parth-plasto-pack-pvt-ltd',
+    'https://www.facebook.com/parthplastopack'
+  ],
 };
 
 

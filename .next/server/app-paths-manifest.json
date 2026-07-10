@@ -1,11 +1,10 @@
 {
+  "/contact/page": "app/contact/page.js",
+  "/products/page": "app/products/page.js",
+  "/icon.png/route": "app/icon.png/route.js",
+  "/products/[slug]/page": "app/products/[slug]/page.js",
   "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
   "/page": "app/page.js",
-  "/contact/page": "app/contact/page.js",
-  "/icon.png/route": "app/icon.png/route.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/products/page": "app/products/page.js",
-  "/admin/categories/[id]/page": "app/admin/categories/[id]/page.js",
-  "/admin/categories/page": "app/admin/categories/page.js",
-  "/admin/inquiries/page": "app/admin/inquiries/page.js"
+  "/admin/page": "app/admin/page.js",
+  "/admin/products/page": "app/admin/products/page.js"
 }
