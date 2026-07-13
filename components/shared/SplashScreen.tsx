@@ -7,10 +7,22 @@ import Image from 'next/image';
 export default function SplashScreen() {
   const [isVisible, setIsVisible] = useState(true);
   const [progress, setProgress] = useState(0);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    // Progress counter animation
-    const duration = 1200;
+    setIsClient(true);
+    
+    // Check if user has already seen the splash screen in this session
+    const hasSeenSplash = sessionStorage.getItem('hasSeenSplash');
+    if (hasSeenSplash) {
+      setIsVisible(false);
+      return;
+    }
+    
+    sessionStorage.setItem('hasSeenSplash', 'true');
+
+    // Progress counter animation (speeded up for better UX)
+    const duration = 800;
     const interval = 20;
     const steps = duration / interval;
     let currentStep = 0;
@@ -30,6 +42,9 @@ export default function SplashScreen() {
   }, []);
 
   const text = "Premium Packaging Solutions";
+
+  // Prevent AnimatePresence exit animation on repeat visits by returning null instantly
+  if (isClient && !isVisible && progress === 0) return null;
 
   return (
     <AnimatePresence>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image, { ImageProps } from 'next/image';
 import { cn } from '@/lib/utils';
 
@@ -10,6 +10,14 @@ interface SmoothImageProps extends ImageProps {
 
 export default function SmoothImage({ src, alt, className, wrapperClassName, ...props }: SmoothImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  // Fallback to check if image is already loaded from cache (common on mobile iOS/Safari)
+  useEffect(() => {
+    if (imgRef.current?.complete) {
+      setIsLoaded(true);
+    }
+  }, [src]);
 
   return (
     <div className={cn("relative flex items-center justify-center", wrapperClassName)}>
@@ -19,6 +27,7 @@ export default function SmoothImage({ src, alt, className, wrapperClassName, ...
       )}
       
       <Image
+        ref={imgRef}
         src={src}
         alt={alt}
         className={cn(

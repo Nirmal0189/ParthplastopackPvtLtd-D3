@@ -1,19 +1,22 @@
+import dynamic from 'next/dynamic';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import HeroSection from '@/components/home/HeroSection';
-import AboutSection from '@/components/home/AboutSection';
-import ProductCategories from '@/components/home/ProductCategories';
-import FeaturedProducts from '@/components/home/FeaturedProducts';
-import WhyChooseUs from '@/components/home/WhyChooseUs';
-import ProcessSection from '@/components/home/ProcessSection';
-import FactorySection from '@/components/home/FactorySection';
-import QualitySection from '@/components/home/QualitySection';
-import ClientLogos from '@/components/home/ClientLogos';
-import FAQSection from '@/components/home/FAQSection';
-import ContactSection from '@/components/home/ContactSection';
-import CTASection from '@/components/home/CTASection';
-import BackToTop from '@/components/shared/BackToTop';
-import WhatsAppFloat from '@/components/shared/WhatsAppFloat';
+
+// Dynamically import below-the-fold sections to reduce initial payload
+const AboutSection = dynamic(() => import('@/components/home/AboutSection'));
+const ProductCategories = dynamic(() => import('@/components/home/ProductCategories'));
+const FeaturedProducts = dynamic(() => import('@/components/home/FeaturedProducts'));
+const WhyChooseUs = dynamic(() => import('@/components/home/WhyChooseUs'));
+const ProcessSection = dynamic(() => import('@/components/home/ProcessSection'));
+const FactorySection = dynamic(() => import('@/components/home/FactorySection'));
+const QualitySection = dynamic(() => import('@/components/home/QualitySection'));
+const ClientLogos = dynamic(() => import('@/components/home/ClientLogos'));
+const FAQSection = dynamic(() => import('@/components/home/FAQSection'));
+const ContactSection = dynamic(() => import('@/components/home/ContactSection'));
+const CTASection = dynamic(() => import('@/components/home/CTASection'));
+const BackToTop = dynamic(() => import('@/components/shared/BackToTop'), { ssr: false });
+const WhatsAppFloat = dynamic(() => import('@/components/shared/WhatsAppFloat'), { ssr: false });
 
 export default function HomePage() {
   return (

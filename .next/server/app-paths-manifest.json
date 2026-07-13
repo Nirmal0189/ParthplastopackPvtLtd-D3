@@ -1,10 +1,5 @@
 {
-  "/quality/page": "app/quality/page.js",
-  "/products/page": "app/products/page.js",
-  "/page": "app/page.js",
-  "/about/page": "app/about/page.js",
-  "/products/[slug]/page": "app/products/[slug]/page.js",
-  "/contact/page": "app/contact/page.js",
   "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
-  "/_not-found/page": "app/_not-found/page.js"
+  "/page": "app/page.js",
+  "/icon.png/route": "app/icon.png/route.js"
 }
