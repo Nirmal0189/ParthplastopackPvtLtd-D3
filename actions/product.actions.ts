@@ -5,7 +5,7 @@ import Product from '@/models/Product';
 import Category from '@/models/Category'; // Ensure Category is loaded
 import { revalidatePath } from 'next/cache';
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/lib/authOptions';
 
 // Helper to check admin access
 async function checkAdmin() {

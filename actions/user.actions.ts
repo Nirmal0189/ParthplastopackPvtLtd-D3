@@ -4,7 +4,7 @@ import connectDB from '@/lib/db';
 import User from '@/models/User';
 import { revalidatePath } from 'next/cache';
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/lib/authOptions';
 import bcrypt from 'bcryptjs';
 
 // Helper to check for SUPER_ADMIN or ADMIN access

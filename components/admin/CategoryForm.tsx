@@ -12,7 +12,7 @@ export default function CategoryForm({ initialData }: { initialData?: any }) {
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState('');
-  
+
   const [formData, setFormData] = useState({
     title: initialData?.title || '',
     slug: initialData?.slug || '',
@@ -24,21 +24,21 @@ export default function CategoryForm({ initialData }: { initialData?: any }) {
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || e.target.files.length === 0) return;
-    
+
     setUploading(true);
     setError('');
-    
+
     const file = e.target.files[0];
     const uploadData = new FormData();
     uploadData.append('file', file);
-    
+
     try {
       const res = await fetch('/api/upload', {
         method: 'POST',
         body: uploadData,
       });
       const data = await res.json();
-      
+
       if (data.success) {
         setFormData(prev => ({ ...prev, image: data.url }));
       } else {
@@ -97,23 +97,23 @@ export default function CategoryForm({ initialData }: { initialData?: any }) {
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-1">Title *</label>
-            <input 
-              type="text" 
+            <input
+              type="text"
               required
               className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-none"
               value={formData.title}
-              onChange={(e) => setFormData({...formData, title: e.target.value})}
+              onChange={(e) => setFormData({ ...formData, title: e.target.value })}
             />
           </div>
 
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-1">URL Slug</label>
-            <input 
-              type="text" 
+            <input
+              type="text"
               className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-none"
               value={formData.slug}
               placeholder="Leave blank to auto-generate"
-              onChange={(e) => setFormData({...formData, slug: e.target.value})}
+              onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
             />
           </div>
 
@@ -123,16 +123,16 @@ export default function CategoryForm({ initialData }: { initialData?: any }) {
               {formData.image && (
                 <div className="relative w-24 h-24 rounded-xl border border-gray-200 bg-gray-50 flex items-center justify-center overflow-hidden">
                   <Image src={formData.image} alt="Category Icon" width={96} height={96} className="object-contain" />
-                  <button 
-                    type="button" 
-                    onClick={() => setFormData({...formData, image: ''})}
+                  <button
+                    type="button"
+                    onClick={() => setFormData({ ...formData, image: '' })}
                     className="absolute top-1 right-1 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition"
                   >
                     <X size={14} />
                   </button>
                 </div>
               )}
-              
+
               {!formData.image && (
                 <label className="w-24 h-24 rounded-xl border-2 border-dashed border-gray-300 flex flex-col items-center justify-center cursor-pointer hover:border-blue-500 hover:text-blue-500 transition text-gray-500">
                   {uploading ? (
@@ -151,20 +151,20 @@ export default function CategoryForm({ initialData }: { initialData?: any }) {
 
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-1">Description</label>
-            <textarea 
+            <textarea
               rows={4}
               className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-none"
               value={formData.description}
-              onChange={(e) => setFormData({...formData, description: e.target.value})}
+              onChange={(e) => setFormData({ ...formData, description: e.target.value })}
             />
           </div>
 
           <div className="flex items-center gap-2">
-            <input 
-              type="checkbox" 
+            <input
+              type="checkbox"
               id="isActive"
               checked={formData.isActive}
-              onChange={(e) => setFormData({...formData, isActive: e.target.checked})}
+              onChange={(e) => setFormData({ ...formData, isActive: e.target.checked })}
               className="w-4 h-4 text-blue-600 rounded"
             />
             <label htmlFor="isActive" className="text-sm font-medium text-slate-700">Is Active</label>
@@ -172,8 +172,8 @@ export default function CategoryForm({ initialData }: { initialData?: any }) {
         </div>
 
         <div className="pt-4 flex justify-end">
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             disabled={loading}
             className="btn-primary py-2.5 px-6 rounded-xl flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50"
           >

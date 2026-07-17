@@ -3,6 +3,16 @@ const nextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
     unoptimized: false,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'i.pravatar.cc',
+      },
+      {
+        protocol: 'https',
+        hostname: 'api.dicebear.com',
+      },
+    ],
   },
   eslint: {
     ignoreDuringBuilds: true,

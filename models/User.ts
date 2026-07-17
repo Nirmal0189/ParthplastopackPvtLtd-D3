@@ -3,6 +3,11 @@ import mongoose, { Document, Model } from 'mongoose';
 export interface IUser extends Document {
   name: string;
   email: string;
+  username?: string;
+  phone?: string;
+  department?: string;
+  bio?: string;
+  profileImage?: string;
   password?: string;
   role: 'SUPER_ADMIN' | 'ADMIN' | 'SALES' | 'MARKETING' | 'EMPLOYEE';
   lastLogin?: Date;
@@ -16,6 +21,11 @@ const UserSchema = new mongoose.Schema<IUser>(
       required: [true, 'Please provide a name'],
       maxlength: [60, 'Name cannot be more than 60 characters'],
     },
+    username: { type: String },
+    phone: { type: String },
+    department: { type: String },
+    bio: { type: String },
+    profileImage: { type: String },
     email: {
       type: String,
       required: [true, 'Please provide an email'],

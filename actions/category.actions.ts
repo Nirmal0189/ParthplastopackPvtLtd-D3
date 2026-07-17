@@ -2,9 +2,9 @@
 
 import connectDB from '@/lib/db';
 import Category from '@/models/Category';
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, unstable_noStore as noStore } from 'next/cache';
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/lib/authOptions';
 
 // Helper to check admin access
 async function checkAdmin() {
@@ -15,6 +15,7 @@ async function checkAdmin() {
 }
 
 export async function getCategories() {
+  noStore();
   try {
     await connectDB();
     const categories = await Category.find().sort({ sortOrder: 1, createdAt: -1 }).lean();
