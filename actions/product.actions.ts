@@ -57,6 +57,8 @@ export async function createProduct(data: any) {
 
     const product = await Product.create(data);
     revalidatePath('/admin/products');
+    revalidatePath('/products');
+    revalidatePath('/');
     return { success: true, data: JSON.parse(JSON.stringify(product)) };
   } catch (error: any) {
     return { success: false, error: error.message };
@@ -71,6 +73,9 @@ export async function updateProduct(id: string, data: any) {
     const product = await Product.findByIdAndUpdate(id, data, { new: true });
     revalidatePath('/admin/products');
     revalidatePath(`/admin/products/${id}`);
+    revalidatePath('/products');
+    revalidatePath(`/products/${product.slug}`);
+    revalidatePath('/');
     
     return { success: true, data: JSON.parse(JSON.stringify(product)) };
   } catch (error: any) {
