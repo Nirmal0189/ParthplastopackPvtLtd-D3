@@ -19,6 +19,7 @@
     "@types/ua-parser-js": "^0.7.39",
     "bcryptjs": "^3.0.3",
     "class-variance-authority": "^0.7.0",
+    "cloudinary": "^2.10.0",
     "clsx": "^2.1.1",
     "embla-carousel-autoplay": "^8.3.0",
     "embla-carousel-react": "^8.3.0",

@@ -32,7 +32,7 @@ export default async function AdminLayout({ children }: { children: ReactNode })
         <Toaster position="top-right" />
         {/* Sidebar */}
         <AdminSidebar />
-        
+
         {/* Main Content */}
         <div className="flex-1 flex flex-col min-h-screen w-full max-w-[100vw] lg:max-w-full overflow-x-hidden transition-all duration-300" style={{ paddingLeft: 'var(--sidebar-width, 280px)' }}>
           <PremiumAdminHeader />

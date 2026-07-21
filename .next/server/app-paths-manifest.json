@@ -1,6 +1,0 @@
-{
-  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
-  "/icon.png/route": "app/icon.png/route.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/admin/settings/page": "app/admin/settings/page.js"
-}
