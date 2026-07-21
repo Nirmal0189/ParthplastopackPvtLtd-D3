@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import PixelReveal from '@/components/ui/PixelReveal';
 import {
   Download, Send, ChevronRight, Check, Package, Ruler, Weight,
   Palette, Layers, Star, Share2,
@@ -82,14 +83,12 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                 }}
                 className="flex items-center justify-center w-full h-full"
               >
-                <Image
-                  src={images[selectedImage]}
-                  alt={product.name}
-                  width={600}
-                  height={600}
-                  className="w-full h-full object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.15)] group-hover:scale-105 transition-transform duration-700"
-                  priority
-                />
+                <div className="w-full h-full drop-shadow-[0_20px_30px_rgba(0,0,0,0.15)] group-hover:scale-105 transition-transform duration-700">
+                  <PixelReveal
+                    imageSrc={images[selectedImage]}
+                    transitionColor="#F9FAFB"
+                  />
+                </div>
               </motion.div>
             </div>
 
